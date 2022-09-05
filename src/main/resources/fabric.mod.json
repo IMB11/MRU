@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "minelib",
+  "version": "${version}",
+  "name": "mine11lib",
+  "description": "Library mod required for most mods by mineblock11",
+  "authors": [
+    "mineblock11"
+  ],
+  "contact": {
+    "repo": "https://github.com/11mods/mine11lib"
+  },
+  "license": "MIT",
+  "icon": "assets/minelib/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "mine.block.minelib.client.MinelibClient"
+    ],
+    "main": [
+      "mine.block.minelib.Minelib"
+    ],
+    "preLaunch": [
+      "mine.block.minelib.MinelibPrelaunch"
+    ]
+  },
+  "mixins": [
+    "minelib.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": ">=1.19"
+  }
+}
