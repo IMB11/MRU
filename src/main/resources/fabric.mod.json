@@ -11,7 +11,7 @@
     "repo": "https://github.com/11mods/mine11lib"
   },
   "license": "MIT",
-  "icon": "assets/minelib/icon.png",
+  "icon": "11minelogo.png",
   "environment": "*",
   "entrypoints": {
     "client": [

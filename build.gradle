@@ -84,7 +84,11 @@ publishing {
     repositories {
         maven {
             name = "11maven"
-            url = "https://maven.mineblock11.dev/{repository}"
+            url = "https://maven.mineblock11.dev/releases"
+            credentials {
+                username maven11Username
+                password maven11Password
+            }
         }
     }
 }
