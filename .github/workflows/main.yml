@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+env:
+  MAVEN_PASSWORD: ${{ secrets.MAVEN_TOKEN }}
+
 jobs:
   upload_asset:
     runs-on: ubuntu-latest
@@ -19,6 +22,9 @@ jobs:
           cache: gradle
           java-version: 17
       - run: chmod +x gradlew
+      - run: |
+              echo maven11Username=mineblock11 
+              echo maven11Password=$MAVEN_PASSWORD
       - name: Clean Build
         run: ./gradlew clean build --no-daemon
       - uses: Kir-Antipov/mc-publish@v3.2
