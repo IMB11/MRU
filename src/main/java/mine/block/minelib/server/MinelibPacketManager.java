@@ -15,7 +15,7 @@ public abstract class MinelibPacketManager {
     private final ServerPlayNetworking.PlayChannelHandler serverAction;
     private final ClientPlayNetworking.PlayChannelHandler clientAction;
 
-    MinelibPacketManager(String id, @Nullable EnvType envType, @Nullable ServerPlayNetworking.PlayChannelHandler serverAction, @Nullable ClientPlayNetworking.PlayChannelHandler clientAction) {
+    public MinelibPacketManager(String id, @Nullable EnvType envType, @Nullable ServerPlayNetworking.PlayChannelHandler serverAction, @Nullable ClientPlayNetworking.PlayChannelHandler clientAction) {
         this.ID = new Identifier(id);
         this.env = envType;
         this.serverAction = serverAction;
