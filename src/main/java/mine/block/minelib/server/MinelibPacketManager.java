@@ -9,21 +9,14 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public enum MinelibPacketManager {
-    TEST(EnvType.CLIENT, null, null) {
-        @Override
-        public Logger getLogger() {
-            return LoggerFactory.getLogger("MinelibTest");
-        }
-    };
-
+public abstract class MinelibPacketManager {
     public final Identifier ID;
     private final EnvType env;
     private final ServerPlayNetworking.PlayChannelHandler serverAction;
     private final ClientPlayNetworking.PlayChannelHandler clientAction;
 
-    MinelibPacketManager(@Nullable EnvType envType, @Nullable ServerPlayNetworking.PlayChannelHandler serverAction, @Nullable ClientPlayNetworking.PlayChannelHandler clientAction) {
-        this.ID = new Identifier("glass", this.name().toLowerCase());
+    MinelibPacketManager(String id, @Nullable EnvType envType, @Nullable ServerPlayNetworking.PlayChannelHandler serverAction, @Nullable ClientPlayNetworking.PlayChannelHandler clientAction) {
+        this.ID = new Identifier(id);
         this.env = envType;
         this.serverAction = serverAction;
         this.clientAction = clientAction;
