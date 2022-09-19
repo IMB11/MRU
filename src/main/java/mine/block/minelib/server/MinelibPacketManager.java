@@ -39,8 +39,6 @@ public abstract class MinelibPacketManager {
             ServerPlayNetworking.registerGlobalReceiver(ID, serverAction);
         }
 
-        getLogger().info("Registered Packet: " + this.ID);
+        System.out.println("Registered Packet: " + this.ID);
     }
-
-    public abstract Logger getLogger();
 }
