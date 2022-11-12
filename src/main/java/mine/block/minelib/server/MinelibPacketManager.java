@@ -6,9 +6,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+@Deprecated(since = "0.1.4", forRemoval = true)
 public abstract class MinelibPacketManager {
     public final Identifier ID;
     private final EnvType env;

@@ -1,6 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "minelib",
+  "provides": [
+    "mine11lib"
+  ],
   "version": "${version}",
   "name": "mine11lib",
   "description": "Library mod required for most mods by mineblock11",

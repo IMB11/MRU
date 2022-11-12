@@ -30,6 +30,8 @@ dependencies {
     api include("com.sksamuel.scrimage:scrimage-core:4.0.31")
     api include("com.github.LlamaLad7:MixinExtras:0.0.11")
     annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.11")
+
+    include modImplementation("maven.modrinth:paragon:fabric-1.0.3b-1.19x")
 }
 
 processResources {
@@ -82,12 +84,9 @@ publishing {
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
         maven {
-            name = "11maven"
+            name = "mineblock"
             url = "https://maven.mineblock11.dev/releases"
-            credentials {
-                username maven11Username
-                password maven11Password
-            }
+            credentials(PasswordCredentials)
         }
     }
 }
