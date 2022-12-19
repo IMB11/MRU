@@ -1,4 +1,4 @@
-package mine.block.minelib.datagen.providers;
+package mine.block.mru.datagen.providers;
 
 import com.sksamuel.scrimage.ImmutableImage;
 import com.sksamuel.scrimage.nio.PngWriter;

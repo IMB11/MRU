@@ -31,7 +31,7 @@ dependencies {
     api include("com.github.LlamaLad7:MixinExtras:0.0.11")
     annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.11")
 
-    include modImplementation("maven.modrinth:paragon:fabric-1.0.3b-1.19x")
+    include modImplementation('org.reflections:reflections:0.10.2')
 }
 
 processResources {

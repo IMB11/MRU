@@ -1,4 +1,4 @@
-package mine.block.minelib.datagen.filters;
+package mine.block.mru.datagen.filters;
 
 import com.sksamuel.scrimage.ImmutableImage;
 import com.sksamuel.scrimage.color.RGBColor;
@@ -11,6 +11,12 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class ColorSwapFilter {
+    /**
+     * Applies a color swap to an image.
+     * @param image The image to apply the color swap to.
+     * @param mainColor The color to swap.
+     * @return The processed image.
+     */
     public static ImmutableImage apply(ImmutableImage image, RGBColor mainColor) throws IOException {
         HashMap<Pair<Integer, Integer>, Integer> nonInvisAlphaPixelPositions = new HashMap<>();
         HashSet<Pair<Integer, Integer>> pixelPositions = new HashSet<>();

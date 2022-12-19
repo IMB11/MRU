@@ -1,34 +1,36 @@
 {
   "schemaVersion": 1,
-  "id": "minelib",
-  "provides": [
-    "mine11lib"
-  ],
+  "id": "mru",
   "version": "${version}",
-  "name": "mine11lib",
+  "name": "Mineblock's Repetition Utilities",
+  "provides": [
+    "minelib",
+    "mine11lib",
+    "hexalib"
+  ],
   "description": "Library mod required for most mods by mineblock11",
   "authors": [
     "mineblock11"
   ],
   "contact": {
-    "repo": "https://github.com/11mods/mine11lib"
+    "repo": "https://github.com/mineblock11/MRU"
   },
   "license": "MIT",
-  "icon": "11minelogo.png",
+  "icon": "minimal_64h.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "mine.block.minelib.client.MinelibClient"
+      "mine.block.mru.client.MRUClient"
     ],
     "main": [
-      "mine.block.minelib.Minelib"
+      "mine.block.mru.MRU"
     ],
     "preLaunch": [
-      "mine.block.minelib.MinelibPrelaunch"
+      "mine.block.mru.MRUPrelaunch"
     ]
   },
   "mixins": [
-    "minelib.mixins.json"
+    "mru.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.9",

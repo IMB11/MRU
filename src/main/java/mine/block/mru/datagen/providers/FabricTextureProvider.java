@@ -1,4 +1,4 @@
-package mine.block.minelib.datagen.providers;
+package mine.block.mru.datagen.providers;
 
 import com.google.common.hash.HashCode;
 import com.mojang.authlib.minecraft.client.MinecraftClient;

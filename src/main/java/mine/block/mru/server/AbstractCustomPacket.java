@@ -1,4 +1,4 @@
-package mine.block.minelib.server;
+package mine.block.mru.server;
 
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
