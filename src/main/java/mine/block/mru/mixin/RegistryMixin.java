@@ -1,8 +1,8 @@
 package mine.block.mru.mixin;
 
 import mine.block.mru.registry.MRURegistry;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.SimpleRegistry;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.SimpleRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

@@ -2,8 +2,8 @@ package mine.block.mru.registry;
 
 import mine.block.mru.server.AbstractCustomPacket;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
+import net.minecraft.registry.SimpleRegistry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.SimpleRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
 public class MRURegistry {
