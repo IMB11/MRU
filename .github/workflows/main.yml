@@ -23,8 +23,8 @@ jobs:
           java-version: 17
       - run: chmod +x gradlew
       - run: |
-              echo maven11Username=mineblock11 >> gradle.properties
-              echo maven11Password=$MAVEN_PASSWORD >> gradle.properties
+              echo mineblockMavenUsername=mineblock11 >> gradle.properties
+              echo mineblockMavenPassword=$MAVEN_PASSWORD >> gradle.properties
       - name: Clean Build
         run: ./gradlew clean build --no-daemon
       - uses: Kir-Antipov/mc-publish@v3.2
