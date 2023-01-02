@@ -4,7 +4,6 @@
   "package": "mine.block.mru.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "RegistryMixin"
   ],
   "client": [
   ],
