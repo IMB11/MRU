@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "id": "mru",
-  "version": "${version}",
-  "name": "Mineblock's Repetition Utilities",
+  "version": "0.0.0",
+  "name": "Mineblock's Repeated Utilities",
   "provides": [
     "minelib",
     "mine11lib",
     "hexalib"
   ],
-  "description": "Library mod required for most mods by mineblock11",
+  "description": "Library mod providing compatability utilities and other stuff.",
   "authors": [
     "mineblock11"
   ],
@@ -16,17 +16,11 @@
     "repo": "https://github.com/mineblock11/MRU"
   },
   "license": "MIT",
-  "icon": "minimal_64h.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "mine.block.mru.client.MRUClient"
-    ],
     "main": [
-      "mine.block.mru.MRU"
-    ],
-    "preLaunch": [
-      "mine.block.mru.MRUPrelaunch"
+      "com.mineblock11.mru.entry.EntrypointHelper"
     ]
   },
   "mixins": [

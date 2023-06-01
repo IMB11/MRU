@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "mru-test",
+  "version": "0.0.0",
+  "name": "Mineblock's Repeated Utilities",
+  "provides": [],
+  "description": "Testmod for MRU",
+  "authors": [
+    "mineblock11"
+  ],
+  "contact": {
+    "repo": "https://github.com/mineblock11/MRU"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "mru-compat-mru": [
+      "com.mineblock11.mru.test.entry.MRUCompatEntrypoint"
+    ],
+    "mru-compat-fabric-api": [
+      "com.mineblock11.mru.test.entry.FabricAPICompatEntrypoint"
+    ]
+  },
+  "mixins": [],
+  "depends": {}
+}

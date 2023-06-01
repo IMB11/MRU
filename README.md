@@ -1,6 +1,11 @@
-# Mineblock's Repetition Utilities
+# Mineblock's Repeated Utilities
 
-lasses in this library are used repeatedly by my mods - if you want to use it as well - [checkout the documentation here.]()
+This library contains useful features such as:
+
+- Automatic Compatability Entrypoints
+- UI Colour standards.
+- String/Math utilities.
+- Other misc. stuff used by my mods.
 
 ## Installation
 
@@ -10,8 +15,13 @@ maven {
 }
 
 dependencies {
-    // For >=1.19.3
-    modImplementation "mine.block:MRU:0.1.4+1.19.3"
+    modImplementation "mine.block:MRU:2.0.0+1.20"
 }
 ```
+
+## Automatic Compat. Entrypoints
+
+MRU calls the `mru-compat-X` (where X is the mod ID) for all mods that are loaded by fabric.
+
+See the test mod for an example on how to use it.
 
