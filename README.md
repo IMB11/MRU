@@ -7,6 +7,8 @@ This library contains useful features such as:
 - String/Math utilities.
 - Other misc. stuff used by my mods.
 
+Full documentation can be found at https://docs.mineblock11.dev/
+
 ## Installation
 
 ```groovy
@@ -15,13 +17,6 @@ maven {
 }
 
 dependencies {
-    modImplementation "mine.block:MRU:2.0.0+1.20"
+    modImplementation "com.mineblock11:MRU:2.0.0+1.20"
 }
 ```
-
-## Automatic Compat. Entrypoints
-
-MRU calls the `mru-compat-X` (where X is the mod ID) for all mods that are loaded by fabric.
-
-See the test mod for an example on how to use it.
-
