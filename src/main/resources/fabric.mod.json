@@ -20,12 +20,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.mineblock11.mru.entry.EntrypointHelper"
+      "com.mineblock11.mru.entry.EntrypointHelper",
+      "com.mineblock11.mru.updates.ModUpdaterEntrypoint"
     ]
   },
   "mixins": [
     "mru.mixins.json"
   ],
+  "custom": {
+    "mru:modrinth-id": "SNVQ2c0g"
+  },
   "depends": {
     "fabricloader": ">=0.14.9",
     "fabric": "*",
