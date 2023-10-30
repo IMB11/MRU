@@ -119,8 +119,8 @@ public class YACLHelper {
          * @param setter The setter of the option.
          * @return The togglable option.
          */
-        public Option<Boolean> createTogglableOption(String id, Option<?> optionToToggle, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
-            return YACLHelper.createTogglableOption(this.namespace, id, optionToToggle, defaultValue, getter, setter);
+        public Option<Boolean> createTogglableOption(String id, Option<?> optionToToggle, boolean hasImage, String imagePrefix, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
+            return YACLHelper.createTogglableOption(this.namespace, id, optionToToggle, hasImage, imagePrefix, defaultValue, getter, setter);
         }
 
         /**
@@ -248,15 +248,21 @@ public class YACLHelper {
         return createHandler(id, klass, new ArrayList<>());
     }
 
-    private static Option.Builder<Boolean> createToggleableOptionBuilder(String namespace, String id, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
-        return Option.<Boolean>createBuilder()
+    private static Option.Builder<Boolean> createToggleableOptionBuilder(String namespace, String id, boolean hasImage, String imagePrefix, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
+        var descriptionBuilder = OptionDescription.createBuilder()
+                .text(getDesc(namespace, "disable" + WordUtils.capitalize(id)));
+
+        if(hasImage) {
+            descriptionBuilder.webpImage(getImg(namespace, imagePrefix.isEmpty() ? id : imagePrefix + WordUtils.capitalize(id)));
+        }
+
+        var builder = Option.<Boolean>createBuilder()
                 .name(getName(namespace, "disable" + WordUtils.capitalize(id)))
-                .description(OptionDescription.createBuilder()
-                        .text(getDesc(namespace, "disable" + WordUtils.capitalize(id)))
-                        .webpImage(getImg(namespace, "disable" + WordUtils.capitalize(id)))
-                        .build())
+                .description(descriptionBuilder.build())
                 .controller(opt -> BooleanControllerBuilder.create(opt).yesNoFormatter())
                 .binding(defaultValue, getter, setter);
+
+        return builder;
     }
 
     /**
@@ -264,13 +270,15 @@ public class YACLHelper {
      * @param namespace The namespace of the mod.
      * @param id The ID of the config option.
      * @param optionToToggle The option to toggle.
+     * @param hasImage Whether or not the config option has an image.
+     * @param imagePrefix The prefix of the image file.
      * @param defaultValue The default value of the option.
      * @param getter The getter of the option.
      * @param setter The setter of the option.
      * @return The togglable option.
      */
-    public static Option<Boolean> createTogglableOption(String namespace, String id, Option<?> optionToToggle, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
-        return createToggleableOptionBuilder(namespace, id, defaultValue, getter, setter)
+    public static Option<Boolean> createTogglableOption(String namespace, String id, Option<?> optionToToggle, boolean hasImage, String imagePrefix, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
+        return createToggleableOptionBuilder(namespace, id, hasImage, imagePrefix, defaultValue, getter, setter)
                 .listener((opt, val) -> {
                     optionToToggle.setAvailable(!val);
                 }).build();
@@ -302,7 +310,7 @@ public class YACLHelper {
      * @return The togglable option group.
      */
     public static OptionGroup createToggleableGroup(String namespace, String id, boolean hasImage, ArrayList<Option<?>> optionsToToggle, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
-        var toggleOption = createToggleableOptionBuilder(namespace, id, defaultValue, getter, setter)
+        var toggleOption = createToggleableOptionBuilder(namespace, id, hasImage, "", defaultValue, getter, setter)
                 .listener((opt, val) -> {
                     optionsToToggle.forEach(option -> option.setAvailable(!val));
                 }).build();
