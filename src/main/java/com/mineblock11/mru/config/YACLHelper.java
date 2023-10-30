@@ -287,16 +287,7 @@ public class YACLHelper {
      * @return
      */
     public static OptionGroup createToggleableGroup(String namespace, String id, ArrayList<Option<?>> optionsToToggle, boolean defaultValue, Supplier<Boolean> getter, Consumer<Boolean> setter) {
-        var toggleOption = createToggleableOptionBuilder(namespace, id, defaultValue, getter, setter)
-                .listener((opt, val) -> {
-                    optionsToToggle.forEach(option -> option.setAvailable(!val));
-                }).build();
-
-        return OptionGroup.createBuilder()
-                .description(description(namespace, id, false))
-                .option(toggleOption)
-                .options(optionsToToggle)
-                .build();
+        return createToggleableGroup(namespace, id, false, optionsToToggle, defaultValue, getter, setter);
     }
 
     /**
@@ -317,6 +308,8 @@ public class YACLHelper {
                 }).build();
 
         return OptionGroup.createBuilder()
+                .name(getName(namespace, id))
+                .collapsed(false)
                 .description(description(namespace, id, hasImage))
                 .option(toggleOption)
                 .options(optionsToToggle)
