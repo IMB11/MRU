@@ -193,7 +193,7 @@ public class YACLHelper {
                 .text(getDesc(namespace, id));
 
         if(image) {
-            builder.webpImage(getImg(namespace, id));
+            builder.webpImage(getImg(namespace, id.replace("group.", "")));
         }
 
         return builder.build();
@@ -308,9 +308,9 @@ public class YACLHelper {
                 }).build();
 
         return OptionGroup.createBuilder()
-                .name(getName(namespace, id))
+                .name(getName(namespace, "group." + id))
                 .collapsed(false)
-                .description(description(namespace, id, hasImage))
+                .description(description(namespace, "group." + id, hasImage))
                 .option(toggleOption)
                 .options(optionsToToggle)
                 .build();
