@@ -20,8 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.mineblock11.mru.entry.EntrypointHelper",
-      "com.mineblock11.mru.updates.ModUpdaterEntrypoint"
+      "com.mineblock11.mru.entry.EntrypointHelper"
     ]
   },
   "mixins": [
