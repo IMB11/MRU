@@ -13,14 +13,7 @@
   },
   "license": "MIT",
   "environment": "*",
-  "entrypoints": {
-    "mru-compat-mru": [
-      "com.mineblock11.mru.test.entry.MRUCompatEntrypoint"
-    ],
-    "mru-compat-fabric-api": [
-      "com.mineblock11.mru.test.entry.FabricAPICompatEntrypoint"
-    ]
-  },
+  "entrypoints": {},
   "mixins": [],
   "depends": {}
 }
