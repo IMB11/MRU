@@ -7,6 +7,10 @@ plugins {
 version =  property("mod.version") + "+" + property("deps.minecraft")
 group = "com.mineblock11"
 
+base {
+    archivesBaseName = "mru"
+}
+
 repositories {
     mavenCentral()
     maven { url "https://maven.terraformersmc.com/releases" }
