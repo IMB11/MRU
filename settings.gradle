@@ -4,8 +4,25 @@ pluginManagement {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
+        maven {
+            name = "KikuGie"
+            url = "https://maven.kikugie.dev/snapshots"
+        }
         gradlePluginPortal()
     }
+}
+
+plugins {
+    id "dev.kikugie.stonecutter" version "0.4.0-alpha.4"
+}
+
+stonecutter {
+    shared {
+        versions "1.20.1", "1.20.4", "1.20.6"
+        vcsVersion = "1.20.4"
+    }
+
+    create rootProject
 }
 
 rootProject.name = "MRU"
