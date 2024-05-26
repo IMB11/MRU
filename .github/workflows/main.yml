@@ -22,7 +22,7 @@ jobs:
       - name: Build JARs
         uses: Wandalen/wretry.action@master
         with:
-          command: "gradle chiseledBuild"
+          command: "gradle chiseledBuild chiseledReleaseMod -PmineblockMavenUsername=mineblock11 -PmineblockMavenPassword=${{ secrets.MAVEN_TOKEN }}"
           attempt_limit: 3
       - name: Upload Built JARs
         uses: actions/upload-artifact@v4

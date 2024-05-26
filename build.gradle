@@ -27,19 +27,16 @@ dependencies {
 }
 
 processResources {
-    filesMatching('fabric.mod.json') {
+    filesMatching("fabric.mod.json") {
         expand 'mod_version': version,
                 'target_minecraft': project.property('mod.target'),
-                'target_yacl': project.property('deps.yacl')
+                'target_yacl': project.property('deps.yacl'),
+                'target_fabricloader': project.property('deps.fabric_loader')
     }
 }
 
-def targetJavaVersion = 21
 tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        it.options.release = targetJavaVersion
-    }
+    it.options.release = 17
 }
 
 java {
@@ -47,6 +44,7 @@ java {
     sourceCompatibility = version
     targetCompatibility = version
     archivesBaseName = "mru"
+    withSourcesJar()
 }
 
 jar {

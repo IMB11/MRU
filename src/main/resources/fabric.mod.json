@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mru",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Mineblock's Repeated Utilities",
   "provides": [
     "minelib",
@@ -30,7 +30,9 @@
     "mru:modrinth-id": "SNVQ2c0g"
   },
   "depends": {
-    "fabricloader": ">=0.14.9",
-    "minecraft": ">=1.20.5"
+    "fabric": "*",
+    "fabricloader": ">=${target_fabricloader}",
+    "minecraft": "${target_minecraft}",
+    "yacl": "${target_yacl}"
   }
 }
