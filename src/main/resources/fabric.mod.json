@@ -33,6 +33,6 @@
     "fabric": "*",
     "fabricloader": ">=${target_fabricloader}",
     "minecraft": "${target_minecraft}",
-    "yacl": "${target_yacl}"
+    "yacl": ">=${target_yacl}"
   }
 }

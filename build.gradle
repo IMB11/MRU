@@ -63,7 +63,7 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
             groupId = "com.mineblock11"
-            artifactId = "mru"
+            artifactId = "MRU"
         }
     }
 
