@@ -178,7 +178,7 @@ public class YACLHelper {
      * @return The location of the image of the config option.
      */
     public static Identifier getImg(String namespace, String id) {
-        return new Identifier(namespace, "textures/config/" + id.toLowerCase() + ".webp");
+        return Identifier.of(namespace, "textures/config/" + id.toLowerCase() + ".webp");
     }
 
     /**
@@ -221,7 +221,7 @@ public class YACLHelper {
         var configPath = FabricLoader.getInstance().getConfigDir().resolve(id + ".config.json");
         return ConfigClassHandler
                 .createBuilder(klass)
-                .id(new Identifier(id, "config"))
+                .id(Identifier.of(id, "config"))
                 .serializer(config -> {
                     var builder = GsonConfigSerializerBuilder
                             .create(config)
