@@ -9,21 +9,34 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: corretto
-          cache: gradle
           java-version: 21
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper/
+          key: ${{ runner.os }}-gradle
+          restore-keys: |
+            ${{ runner.os }}-gradle
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: "wrapper"
+
       - name: Build JARs
         uses: Wandalen/wretry.action@master
         with:
           command: "gradle chiseledBuild chiseledReleaseMod -PmineblockMavenUsername=mineblock11 -PmineblockMavenPassword=${{ secrets.MAVEN_TOKEN }}"
           attempt_limit: 3
+
       - name: Upload Built JARs
         uses: actions/upload-artifact@v4
         with:
@@ -36,15 +49,27 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        game_version: [ "1.20.1", "1.20.4", "1.20.6", "1.21" ]
+        # REMINDER: Update this array when adding new game versions.
+        game_version: [
+          "1.20.1-fabric",
+          "1.20.1-forge",
+          "1.20.4-fabric",
+          "1.20.4-neoforge",
+          "1.20.6-fabric",
+          "1.20.6-neoforge",
+          "1.21-fabric",
+          "1.21-neoforge"
+        ]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Download Built JARs
         uses: actions/download-artifact@v4
         with:
           name: built-jars
           path: ./versions
+
       - name: Publish to Modrinth, CurseForge, etc.
         uses: Kir-Antipov/mc-publish@v3.3
         with:

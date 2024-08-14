@@ -20,18 +20,15 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.imb11.loader.fabric.TestEntrypoint"
+      "dev.imb11.loader.fabric.MRUFabric"
     ]
   },
   "mixins": [
     "mru.mixins.json"
   ],
-  "custom": {
-    "mru:modrinth-id": "SNVQ2c0g"
-  },
   "depends": {
     "fabric": "*",
-    "fabricloader": ">=${target_fabricloader}",
+    "fabricloader": "*",
     "minecraft": "${target_minecraft}"
   }
 }

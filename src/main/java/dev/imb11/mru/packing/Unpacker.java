@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import dev.imb11.mru.packing.resource.UnpackedResourcePack;
+import net.minecraft.SharedConstants;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jetbrains.annotations.ApiStatus;
 import org.slf4j.Logger;
@@ -54,7 +55,7 @@ public class Unpacker {
         *///?}
 
         //? if neoforge {
-/*        return net.neoforged.fml.ModList.get().getModFileById(modID).getFile().getFilePath().toUri();
+        /*return net.neoforged.fml.ModList.get().getModFileById(modID).getFile().getFilePath().toUri();
         *///?}
     }
 
@@ -85,15 +86,7 @@ public class Unpacker {
             
         }
 
-        /*? if =1.20.1 {*/
-        /*int packFormat = 15;
-         *//*?} elif =1.20.4 {*/
-        /*int packFormat = 26;
-         *//*?} elif =1.20.6 {*/
-        /*int packFormat = 41;
-         *//*?} else {*/
-        int packFormat = 45;
-        /*?}*/
+        int packFormat = SharedConstants.RESOURCE_PACK_VERSION;
 
         if (!metaPath.toFile().exists()) {
             LOGGER.info("Creating pack.mcmeta in unpacked resource pack folder.");
@@ -174,7 +167,11 @@ public class Unpacker {
                 }
             } catch (Exception ignored) {
                 // Running from file system
-                Path path = Paths.get(jarUrl.resolve("packed"));
+                //? if fabric {
+                Path path = Paths.get(uri);
+                //?} else {
+                /*Path path = Paths.get(jarUrl).resolve("packed");
+                *///?}
                 Files.walk(path).forEach(sourcePath -> {
                     try {
                         Path relativePath = path.relativize(sourcePath);

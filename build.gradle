@@ -65,24 +65,21 @@ dependencies {
         }
     })
 
-    modImplementation(include("dev.architectury:architectury-${loader}:${property("deps.arch_api")}"))
+//    modImplementation(include("dev.architectury:architectury-${loader}:${property("deps.arch_api")}"))
 
     if (isFabric) {
-        System.out.println(loader)
         modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
 
         modImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
         modImplementation("maven.modrinth:modmenu:${property("deps.mod_menu")}")
 
-        modImplementation(include("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}"))
+        modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
     } else {
         // YACL stuff
-        modImplementation(include("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}"), {
-            transitive = false
-        })
+        modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
 
-        "forgeRuntimeLibrary"(implementation include("org.quiltmc.parsers:json:0.2.1"))
-        "forgeRuntimeLibrary"(implementation include("org.quiltmc.parsers:gson:0.2.1"))
+        "forgeRuntimeLibrary"(implementation ("org.quiltmc.parsers:json:0.2.1"))
+        "forgeRuntimeLibrary"(implementation ("org.quiltmc.parsers:gson:0.2.1"))
 
         if (loader == "forge") {
             "forge"("net.minecraftforge:forge:${mcVersion}-${property("deps.fml")}")
