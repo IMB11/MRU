@@ -1,9 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "mine.block.mru.mixin",
+  "package": "dev.imb11.mru.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ReloadableResourceManagerImplMixin",
+    "fabric.FabricDatagenHelperMixin"
   ],
   "client": [
   ],

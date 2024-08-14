@@ -16,11 +16,11 @@
     "repo": "https://github.com/mineblock11/MRU"
   },
   "license": "MIT",
-  "icon": "icon.png",
+  "icon": "assets/mru/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.mineblock11.mru.entry.EntrypointHelper"
+      "dev.imb11.loader.fabric.TestEntrypoint"
     ]
   },
   "mixins": [

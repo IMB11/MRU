@@ -1,52 +1,147 @@
 plugins {
-    id "dev.kikugie.stonecutter"
-    id "fabric-loom" version "1.6-SNAPSHOT"
-    id 'maven-publish'
+    id "dev.architectury.loom" version "1.6-SNAPSHOT"
 }
 
-version =  property("mod.version") + "+" + property("deps.minecraft")
-group = "com.mineblock11"
+def loader = property("loom.platform")
+def isFabric = loader == "fabric"
+def mcVersion = property("deps.minecraft")
+
+version = property("mod.version") + "+" + mcVersion
+group = "dev.imb11"
 
 base {
-    archivesBaseName = "mru"
+    archivesName = property("mod.name") + "+" + loader
+}
+
+loom {
+    runConfigs.all {
+        ideConfigGenerated = true
+        runDir "../../run"
+    }
+
+    if (loader == "forge") {
+        forge {
+            convertAccessWideners = true
+            mixinConfig "mru.mixins.json"
+        }
+    }
 }
 
 repositories {
+    maven { url "https://maven.neoforged.net/releases/" }
     mavenCentral()
-    maven { url "https://maven.terraformersmc.com/releases" }
-    maven { url "https://maven.isxander.dev/releases" }
-    maven { url "https://jitpack.io" }
+    mavenLocal()
+    maven { url = "https://mvn.devos.one/snapshots/" }
+    maven { url 'https://maven.wispforest.io' }
+    maven { url 'https://maven.imb11.dev/releases' }
+    maven { url "https://maven.neoforged.net/releases/" }
+    maven {
+        name 'Xander Maven'
+        url 'https://maven.isxander.dev/releases'
+    }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "https://maven.quiltmc.org/repository/release" }
+    maven { url 'https://maven.terraformersmc.com/releases' }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${property("deps.minecraft")}")
-    mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
+    implementation 'org.jetbrains:annotations:24.0.0'
+    minecraft "com.mojang:minecraft:${property("deps.minecraft")}"
+    mappings(loom.layered {
+        mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
+        if (stonecutter.eval(mcVersion, ">=1.20.6")) {
+            mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion}+build.4")
+        }
+    })
 
-    modImplementation include("dev.isxander:yet-another-config-lib:${property("deps.yacl")}") {
-        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    modImplementation(include("dev.architectury:architectury-${loader}:${property("deps.arch_api")}"))
+
+    if (isFabric) {
+        System.out.println(loader)
+        modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
+
+        modImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
+        modImplementation("maven.modrinth:modmenu:${property("deps.mod_menu")}")
+
+        modImplementation(include("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}"))
+    } else {
+        // YACL stuff
+        modImplementation(include("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}"), {
+            transitive = false
+        })
+
+        "forgeRuntimeLibrary"(implementation include("org.quiltmc.parsers:json:0.2.1"))
+        "forgeRuntimeLibrary"(implementation include("org.quiltmc.parsers:gson:0.2.1"))
+
+        if (loader == "forge") {
+            "forge"("net.minecraftforge:forge:${mcVersion}-${property("deps.fml")}")
+            compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.0"))
+            implementation(include("io.github.llamalad7:mixinextras-forge:0.4.0"))
+        } else {
+            "neoForge"("net.neoforged:neoforge:${property("deps.neoforge")}")
+        }
+    }
+}
+
+afterEvaluate {
+    stonecutter {
+        def platform = property("loom.platform")
+        stonecutter.const("fabric", platform == "fabric")
+        stonecutter.const("forge", platform == "forge")
+        stonecutter.const("neoforge", platform == "neoforge")
     }
 }
 
 processResources {
-    filesMatching("fabric.mod.json") {
-        expand 'mod_version': version,
-                'target_minecraft': project.property('mod.target'),
-                'target_fabricloader': project.property('deps.fabric_loader')
+    def props = [
+            mod_version: version,
+            target_minecraft: project.property("mod.target"),
+    ]
+
+    if (loader == "forge" || loader == "neoforge") {
+        props.target_loader = project.property("fml.target")
+        props.loader = loader
+        props.mandatory_inclusion_field = (loader == "forge") ? "mandatory = true" : "type = \"required\""
+    }
+
+    if (loader == "fabric") {
+        props.target_architectury = project.property("deps.arch_api")
+    }
+
+    props.each { key, value -> inputs.property(key, value) }
+
+    if (loader == "fabric") {
+        filesMatching("fabric.mod.json") { expand(props) }
+        exclude(["META-INF/mods.toml"])
+    }
+
+    if (loader == "forge" || loader == "neoforge") {
+        filesMatching(["META-INF/mods.toml", "META-INF/neoforge.mods.toml"]) { expand(props) }
+        exclude("fabric.mod.json")
+
+        if (stonecutter.eval(mcVersion, ">1.20.4")) {
+            exclude("META-INF/mods.toml")
+        } else {
+            exclude("META-INF/neoforge.mods.toml")
+        }
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
-}
-
 java {
-    var version =  property("deps.minecraft").startsWith("1.20.6") ? JavaVersion.VERSION_21 : JavaVersion.VERSION_17
+    var version = stonecutter.eval(mcVersion, ">1.20.4") ? JavaVersion.VERSION_21 : JavaVersion.VERSION_17
     sourceCompatibility = version
     targetCompatibility = version
-    archivesBaseName = "mru"
     withSourcesJar()
 }
 
@@ -56,21 +151,20 @@ jar {
     }
 }
 
-// configure the maven publication
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            groupId = "com.mineblock11"
-            artifactId = "MRU"
-        }
-    }
-
-    repositories {
-        maven {
-            name = "mineblockMaven"
-            url = "https://maven.imb11.dev/releases"
-            credentials(PasswordCredentials)
-        }
-    }
-}
+//publishing {
+//    repositories {
+//        maven {
+//            name = "mineblockMaven"
+//            url = "https://maven.imb11.dev/releases"
+//            credentials(PasswordCredentials)
+//        }
+//    }
+//
+//    publications {
+//        mavenJava(MavenPublication) {
+//            from components.java
+//            groupId = "dev.imb11"
+//            artifactId = "mru"
+//        }
+//    }
+//}
