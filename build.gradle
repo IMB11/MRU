@@ -1,4 +1,5 @@
 plugins {
+    id "maven-publish"
     id "dev.architectury.loom" version "1.6-SNAPSHOT"
 }
 
@@ -6,11 +7,11 @@ def loader = property("loom.platform")
 def isFabric = loader == "fabric"
 def mcVersion = property("deps.minecraft")
 
-version = property("mod.version") + "+" + mcVersion
+version = property("mod.version") + "+" + mcVersion + "+" + loader
 group = "dev.imb11"
 
 base {
-    archivesName = property("mod.name") + "+" + loader
+    archivesName = property("mod.name")
 }
 
 loom {
@@ -148,20 +149,20 @@ jar {
     }
 }
 
-//publishing {
-//    repositories {
-//        maven {
-//            name = "mineblockMaven"
-//            url = "https://maven.imb11.dev/releases"
-//            credentials(PasswordCredentials)
-//        }
-//    }
-//
-//    publications {
-//        mavenJava(MavenPublication) {
-//            from components.java
-//            groupId = "dev.imb11"
-//            artifactId = "mru"
-//        }
-//    }
-//}
+publishing {
+    repositories {
+        maven {
+            name = "mineblockMaven"
+            url = "https://maven.imb11.dev/releases"
+            credentials(PasswordCredentials)
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = "dev.imb11"
+            artifactId = "mru"
+        }
+    }
+}

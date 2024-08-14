@@ -10,7 +10,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 @Mod("mru")
 public class MRUForge {
 	public MRUForge() {
-		if(!FMLEnvironment.production) {
+		if(!FMLEnvironment.production || true) {
 			Unpacker.register(MRUForge.class, new UnpackedResourcePack("mru", LoaderUtils.getGameDir().resolve("mru"), "mru", "Stop reading this and get back to work!"));
 		}
 	}
