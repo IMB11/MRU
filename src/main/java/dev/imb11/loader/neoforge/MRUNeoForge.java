@@ -10,7 +10,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 @Mod("mru")
 public class MRUNeoForge {
 	public MRUNeoForge() {
-		if(!FMLEnvironment.production || true) {
+		if(!FMLEnvironment.production) {
 			Unpacker.register(MRUNeoForge.class, new UnpackedResourcePack("mru", LoaderUtils.getGameDir().resolve("mru"), "mru", "Stop reading this and get back to work!"));
 		}
 	}
