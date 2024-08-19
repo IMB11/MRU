@@ -59,7 +59,7 @@ public class ConfigHelper {
                 .text(getText(EntryType.OPTION_DESCRIPTION, name));
 
         if (withImage) {
-            builder = builder.webpImage(Identifier.of(modID, "textures/gui/options/" + name + ".webp"));
+            builder = builder.webpImage(Identifier.of(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
         }
 
         return builder.build();
