@@ -30,6 +30,10 @@ loom {
 
 repositories {
     maven { url "https://maven.neoforged.net/releases/" }
+    maven {
+        url = "https://thedarkcolour.github.io/KotlinForForge/"
+        name = "Kotlin for Forge"
+    }
     mavenCentral()
     mavenLocal()
     maven { url = "https://mvn.devos.one/snapshots/" }

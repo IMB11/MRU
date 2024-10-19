@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+@Deprecated
 public class Packer {
     private static final Logger LOGGER = LoggerFactory.getLogger("MRU/Packer");
 

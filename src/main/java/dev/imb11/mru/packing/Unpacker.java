@@ -25,6 +25,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Stream;
 
+@Deprecated
 public class Unpacker {
     private static final Logger LOGGER = LoggerFactory.getLogger("MRU/ResourceUnpacker");
     private static final HashMap<Class<?>, UnpackedResourcePack> PACKS = new HashMap<>();

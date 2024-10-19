@@ -24,6 +24,7 @@ import java.util.*;
  * An unpacked resource pack is one which is loaded from outside the game's `resourcepacks` folder and is not within a mod JAR file.
  * It's useful if you want to make a resource pack that is easily editable by the user.
  */
+@Deprecated
 public class UnpackedResourcePack implements ResourcePack {
     private final String modID;
     private final Path packPath;
