@@ -1,6 +1,6 @@
 plugins {
     id "maven-publish"
-    id "dev.architectury.loom" version "1.6-SNAPSHOT"
+    id "dev.architectury.loom" version "1.7-SNAPSHOT"
 }
 
 def loader = property("loom.platform")
@@ -66,7 +66,7 @@ dependencies {
     mappings(loom.layered {
         mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
         if (stonecutter.eval(mcVersion, ">=1.20.6")) {
-            mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion}+build.4")
+            mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion.replace(".3", "")}+build.4")
         }
     })
 
