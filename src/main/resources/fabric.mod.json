@@ -19,12 +19,8 @@
   "icon": "assets/mru/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "dev.imb11.loader.fabric.MRUFabric"
-    ]
   },
   "mixins": [
-    "mru.mixins.json"
   ],
   "depends": {
     "fabric": "*",
