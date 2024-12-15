@@ -65,34 +65,18 @@ dependencies {
     minecraft "com.mojang:minecraft:${property("deps.minecraft")}"
     mappings(loom.layered {
         mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
-        if (stonecutter.eval(mcVersion, ">=1.20.6")) {
-            mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion.replace(".3", "")}+build.4")
-        }
+        mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion.replace(".3", "").replace(".4", "")}+build.4")
     })
 
-//    modImplementation(include("dev.architectury:architectury-${loader}:${property("deps.arch_api")}"))
+    modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
 
     if (isFabric) {
         modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
 
         modImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
         modImplementation("maven.modrinth:modmenu:${property("deps.mod_menu")}")
-
-        modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
     } else {
-        // YACL stuff
-        modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
-
-        "forgeRuntimeLibrary"(implementation ("org.quiltmc.parsers:json:0.2.1"))
-        "forgeRuntimeLibrary"(implementation ("org.quiltmc.parsers:gson:0.2.1"))
-
-        if (loader == "forge") {
-            "forge"("net.minecraftforge:forge:${mcVersion}-${property("deps.fml")}")
-            compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.0"))
-            implementation(include("io.github.llamalad7:mixinextras-forge:0.4.0"))
-        } else {
-            "neoForge"("net.neoforged:neoforge:${property("deps.neoforge")}")
-        }
+        "neoForge"("net.neoforged:neoforge:${property("deps.neoforge")}")
     }
 }
 
