@@ -68,7 +68,9 @@ dependencies {
         mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion.replace(".3", "").replace(".4", "")}+build.4")
     })
 
-    modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
+    modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}", {
+        transitive = false
+    })
 
     if (isFabric) {
         modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")

@@ -25,6 +25,3 @@ ${mandatory_inclusion_field}
 versionRange="${target_minecraft}"
 ordering="NONE"
 side="BOTH"
-
-[[mixins]]
-config="mru.mixins.json"
