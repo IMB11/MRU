@@ -19,13 +19,6 @@ loom {
         ideConfigGenerated = true
         runDir "../../run"
     }
-
-    if (loader == "forge") {
-        forge {
-            convertAccessWideners = true
-            mixinConfig "mru.mixins.json"
-        }
-    }
 }
 
 repositories {
@@ -68,9 +61,7 @@ dependencies {
         mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion.replace(".3", "").replace(".4", "")}+build.4")
     })
 
-    modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}", {
-        transitive = false
-    })
+    modCompileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
 
     if (isFabric) {
         modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
