@@ -23,7 +23,7 @@
   "mixins": [
   ],
   "depends": {
-    "fabric": "*",
+    "fabric-api": "*",
     "fabricloader": "*",
     "minecraft": "${target_minecraft}"
   }
