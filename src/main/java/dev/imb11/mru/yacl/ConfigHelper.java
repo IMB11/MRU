@@ -3,8 +3,8 @@ package dev.imb11.mru.yacl;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.controller.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -32,9 +32,9 @@ public class ConfigHelper {
     /**
      * @param entryType        The type of the entry that requires a translation key,
      * @param configOptionName The name of the entry that requires a translation key,
-     * @return The {@link Text} with substituted values in the translation key.
+     * @return The {@link Component} with substituted values in the translation key.
      */
-    public @NotNull Text getText(@NotNull EntryType entryType, @NotNull String configOptionName) {
+    public @NotNull Component getText(@NotNull EntryType entryType, @NotNull String configOptionName) {
         @NotNull String entryText;
         switch (entryType) {
             case CATEGORY_NAME -> entryText = "category";
@@ -44,7 +44,7 @@ public class ConfigHelper {
             default -> throw new IllegalArgumentException("TextType is invalid.");
         }
 
-        return Text.translatable(String.format("%s.%s.%s.%s", modID, configTranslationKey, entryText, configOptionName));
+        return Component.translatable(String.format("%s.%s.%s.%s", modID, configTranslationKey, entryText, configOptionName));
     }
 
     /**
@@ -55,11 +55,12 @@ public class ConfigHelper {
      * @return The option description.
      */
     public @NotNull OptionDescription get(@NotNull String name, boolean withImage) {
-        var builder = OptionDescription.createBuilder()
+        var builder = OptionDescription
+                .createBuilder()
                 .text(getText(EntryType.OPTION_DESCRIPTION, name));
 
         if (withImage) {
-            builder = builder.webpImage(Identifier.of(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
+            builder = builder.webpImage(ResourceLocation.tryBuild(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
         }
 
         return builder.build();

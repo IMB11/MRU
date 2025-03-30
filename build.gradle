@@ -56,10 +56,7 @@ repositories {
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.0'
     minecraft "com.mojang:minecraft:${property("deps.minecraft")}"
-    mappings(loom.layered {
-        mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
-        mappings("dev.architectury:yarn-mappings-patch-neoforge:${mcVersion.replace(".3", "").replace(".4", "")}+build.4")
-    })
+    mappings(loom.officialMojangMappings())
 
     modCompileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
 
@@ -92,10 +89,6 @@ processResources {
         props.target_loader = project.property("fml.target")
         props.loader = loader
         props.mandatory_inclusion_field = (loader == "forge") ? "mandatory = true" : "type = \"required\""
-    }
-
-    if (loader == "fabric") {
-        props.target_architectury = project.property("deps.arch_api")
     }
 
     props.each { key, value -> inputs.property(key, value) }
