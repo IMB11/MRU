@@ -81,7 +81,7 @@ stonecutter {
 
 dependencies {
     modstitch.loom {
-        modstitchModImplementation("net.fabricmc.fabric-api:fabric-api:0.112.0+1.21.4")
+        modstitchModImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
         modstitchModImplementation("maven.modrinth:modmenu:${property("deps.mod_menu")}")
     }
 
