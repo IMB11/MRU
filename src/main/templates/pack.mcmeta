@@ -1,0 +1,6 @@
+{
+    "pack": {
+        "description": "A library mod that provides utilities for IMB11's mods.",
+        "pack_format": ${pack_format}
+    }
+}

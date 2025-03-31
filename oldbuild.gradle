@@ -58,13 +58,10 @@ dependencies {
     minecraft "com.mojang:minecraft:${property("deps.minecraft")}"
     mappings(loom.officialMojangMappings())
 
-    modCompileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
+
 
     if (isFabric) {
         modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
-
-        modImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
-        modImplementation("maven.modrinth:modmenu:${property("deps.mod_menu")}")
     } else {
         "neoForge"("net.neoforged:neoforge:${property("deps.neoforge")}")
     }
@@ -120,23 +117,5 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
-    }
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "mineblockMaven"
-            url = "https://maven.imb11.dev/releases"
-            credentials(PasswordCredentials)
-        }
-    }
-
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            groupId = "dev.imb11"
-            artifactId = "mru"
-        }
     }
 }
