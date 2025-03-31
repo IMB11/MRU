@@ -17,7 +17,7 @@
   "entrypoints": {},
   "mixins": [],
   "depends": {
-    "fabricloader": ">=${target_fabricloader}",
+    "fabricloader": ">=${target_loader}",
     "minecraft": "${target_minecraft}"
   }
 }

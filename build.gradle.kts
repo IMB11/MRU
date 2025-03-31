@@ -3,6 +3,7 @@ plugins {
     id("maven-publish")
 }
 
+
 val loader = when {
     modstitch.isLoom -> "fabric"
     modstitch.isModDevGradleRegular -> "neoforge"
@@ -36,9 +37,11 @@ modstitch {
             }.toString()
         )
 
+        replacementProperties.put("target_minecraft", property("mod.target") as String)
         replacementProperties.put("loader", loader)
-        replacementProperties.put("target_fabricloader", when (loader) {
+        replacementProperties.put("target_loader", when (loader) {
             "fabric" -> property("deps.fabric_loader") as String
+            "neoforge" -> property("fml.target") as String
             else -> ""
         })
     }
@@ -135,6 +138,19 @@ fun createActiveTask(
 
     return activeTaskName
 }
+
+//sourceSets {
+//    main {
+//        resources {
+//            srcDir(file("src/main/templates"))
+//        }
+//    }
+//}
+//
+//tasks.named<Jar>("jar") {
+//    exclude("templates/**") // Exclude templates from the JAR
+//}
+
 
 val buildAndCollect by tasks.registering(Copy::class) {
     group = "build"
