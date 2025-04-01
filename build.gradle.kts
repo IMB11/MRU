@@ -98,10 +98,7 @@ publishing {
         maven {
             name = "mineblockMaven"
             url = uri("https://maven.imb11.dev/releases")
-            credentials(PasswordCredentials::class) {
-                username = System.getenv("MAVEN_USERNAME") // Or however you're managing credentials
-                password = System.getenv("MAVEN_PASSWORD")
-            }
+            credentials(PasswordCredentials::class)
         }
     }
 
