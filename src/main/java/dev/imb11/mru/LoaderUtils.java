@@ -34,4 +34,12 @@ public class LoaderUtils {
         /*return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID);
          *//*?}*/
     }
+
+    public static boolean isDevelopmentEnvironment() {
+        /*? if fabric {*/
+        return net.fabricmc.loader.api.FabricLoader.getInstance().isDevelopmentEnvironment();
+        /*?} else {*/
+        /*return !net.neoforged.fml.loading.FMLLoader.isProduction();
+        *///?}
+    }
 }
