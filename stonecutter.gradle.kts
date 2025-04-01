@@ -13,6 +13,11 @@ stonecutter registerChiseled tasks.register("chiseledBuildAndCollect", stonecutt
     ofTask("buildAndCollect")
 }
 
+stonecutter registerChiseled tasks.register("chiseledReleaseMod", stonecutter.chiseled) {
+    group = "project"
+    ofTask("publish")
+}
+
 allprojects {
     repositories {
         mavenCentral()
