@@ -18,6 +18,11 @@ stonecutter registerChiseled tasks.register("chiseledReleaseMod", stonecutter.ch
     ofTask("publish")
 }
 
+stonecutter registerChiseled tasks.register("chiseledReleaseModLocal", stonecutter.chiseled) {
+    group = "project"
+    ofTask("publishToMavenLocal")
+}
+
 allprojects {
     repositories {
         mavenCentral()
