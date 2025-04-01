@@ -3,7 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-
 val loader = when {
     modstitch.isLoom -> "fabric"
     modstitch.isModDevGradleRegular -> "neoforge"
@@ -135,19 +134,6 @@ fun createActiveTask(
 
     return activeTaskName
 }
-
-//sourceSets {
-//    main {
-//        resources {
-//            srcDir(file("src/main/templates"))
-//        }
-//    }
-//}
-//
-//tasks.named<Jar>("jar") {
-//    exclude("templates/**") // Exclude templates from the JAR
-//}
-
 
 val buildAndCollect by tasks.registering(Copy::class) {
     group = "build"

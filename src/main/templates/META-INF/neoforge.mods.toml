@@ -2,24 +2,24 @@ modLoader="javafml"
 loaderVersion = "[1,)"
 issueTrackerURL="https://github.com/IMB11/IMB11/issues"
 displayURL="http://IMB11.dev/"
-logoFile="assets/${mod_id}/icon.png"
+logoFile="assets/mru/icon.png"
 authors="IMB11 (mineblock11)"
 license="${mod_license}"
 
 [[mods]]
-modId="${mod_id}"
+modId="mru"
 version="${mod_version}"
 displayName="${mod_name}"
 description="${mod_description}"
 
-[["dependencies.${mod_id}"]]
-modId="neoforge"
+[[dependencies.mru]]
+modId="${loader}"
 versionRange="[2,)"
 type="required"
 ordering="NONE"
 side="BOTH"
 
-[["dependencies.${mod_id}"]]
+[[dependencies.mru]]
 modId="minecraft"
 type="required"
 versionRange="${target_minecraft}"
