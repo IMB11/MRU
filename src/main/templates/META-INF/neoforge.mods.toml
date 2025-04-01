@@ -13,6 +13,12 @@ displayName="${mod_name}"
 description="${mod_description}"
 
 [["dependencies.${mod_id}"]]
+modId="neoforge"
+versionRange=" "
+ordering="NONE"
+side="BOTH"
+
+[["dependencies.${mod_id}"]]
 modId="minecraft"
 type="required"
 versionRange="${target_minecraft}"
