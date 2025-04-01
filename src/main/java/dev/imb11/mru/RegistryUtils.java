@@ -25,4 +25,12 @@ public class RegistryUtils {
              *///?}
         }
     }
+
+    public static ResourceLocation getId(SoundEvent event) {
+        //? if >=1.21.2 {
+        return event.location();
+        //?} else {
+        /*return event.getLocation();
+        *///?}
+    }
 }
