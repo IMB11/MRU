@@ -81,8 +81,8 @@ stonecutter {
 
 dependencies {
     modstitch.loom {
-        modstitchModImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
-        modstitchModImplementation("maven.modrinth:modmenu:${property("deps.mod_menu")}")
+        modstitchModCompileOnly("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
+        modstitchModCompileOnly("maven.modrinth:modmenu:${property("deps.mod_menu")}")
     }
 
     modstitchModCompileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-${loader}")
