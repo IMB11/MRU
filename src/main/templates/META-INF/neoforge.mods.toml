@@ -25,3 +25,4 @@ type="required"
 versionRange="${target_minecraft}"
 ordering="NONE"
 side="BOTH"
+
