@@ -27,11 +27,8 @@ modstitch {
 
         replacementProperties.put(
             "pack_format", when (mcVersion) {
-                "1.20.1" -> 15
                 "1.21.1" -> 34
-                "1.21.3" -> 42
-                "1.21.4" -> 46
-                "1.21.5" -> 55
+                "1.21.6" -> 63
                 else -> throw IllegalArgumentException("Unsupported Minecraft version: $mcVersion")
             }.toString()
         )

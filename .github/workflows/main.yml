@@ -51,10 +51,8 @@ jobs:
       matrix:
         # REMINDER: Update this array when adding new game versions.
         game_version: [
-          "1.21.1-fabric",
-          "1.21.1-neoforge",
-          "1.21.5-fabric",
-          "1.21.5-neoforge"
+          "1.21.6-fabric",
+          "1.21.6-neoforge"
         ]
     steps:
       - name: Checkout Repository
