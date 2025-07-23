@@ -12,13 +12,13 @@ import java.util.function.Function;
 public class RegistryUtils {
     public static Function<ResourceLocation, SoundEvent> getSoundEventRegistry(@Nullable ClientLevel level) {
         if (level == null) {
-            return BuiltInRegistries.SOUND_EVENT::get;
+            return BuiltInRegistries.SOUND_EVENT::getValue;
         } else {
-            return location -> level.registryAccess().registryOrThrow(Registries.SOUND_EVENT).get(location);
+            return location -> level.registryAccess().lookupOrThrow(Registries.SOUND_EVENT).getValue(location);
         }
     }
 
     public static ResourceLocation getId(SoundEvent event) {
-        return event.getLocation();
+        return event.location();
     }
 }

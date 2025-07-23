@@ -24,7 +24,7 @@ modstitch {
             "A library mod which provides various utilities for IMB11's mods."
         modLicense = "ARR"
 
-        replacementProperties.put("pack_format", "34")
+        replacementProperties.put("pack_format", "63")
 
         replacementProperties.put("target_minecraft", property("mod.target") as String)
         replacementProperties.put("loader", loader)

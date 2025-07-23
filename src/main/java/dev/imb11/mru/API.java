@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * Class used to interface with the https://api.imb11.dev/v2/ API.
  */
+@Deprecated(since="1.0.20+edge")
 public class API {
     private static final String URL = "https://api.imb11.dev/v2";
     private final Gson GSON;
