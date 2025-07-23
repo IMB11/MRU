@@ -54,7 +54,7 @@ jobs:
 
       - id: set-matrix
         run: |
-          BRANCH="${{ github.ref_name }}"
+          BRANCH="${{ github.event.release.target_commitish }}"
           if [ -f .github/targets.json ]; then
             if jq -e --arg branch "$BRANCH" 'has($branch)' .github/targets.json > /dev/null; then
               matrix=$(jq -c --arg branch "$BRANCH" '.[$branch]' .github/targets.json)
