@@ -13,8 +13,7 @@ val loader = when {
 val mcVersion = property("deps.minecraft") as String
 
 modstitch {
-    minecraftVersion = mcVersion
-    javaTarget = if (stonecutter.eval(mcVersion, ">1.20.4")) 21 else 17
+    minecraftVersion = mcVersion as String?
 
     metadata {
         modId = "mru"
@@ -25,16 +24,7 @@ modstitch {
             "A library mod which provides various utilities for IMB11's mods."
         modLicense = "ARR"
 
-        replacementProperties.put(
-            "pack_format", when (mcVersion) {
-                "1.20.1" -> 15
-                "1.21.1" -> 34
-                "1.21.3" -> 42
-                "1.21.4" -> 46
-                "1.21.5" -> 55
-                else -> throw IllegalArgumentException("Unsupported Minecraft version: $mcVersion")
-            }.toString()
-        )
+        replacementProperties.put("pack_format", "34")
 
         replacementProperties.put("target_minecraft", property("mod.target") as String)
         replacementProperties.put("loader", loader)
@@ -46,7 +36,7 @@ modstitch {
     }
 
     loom {
-        fabricLoaderVersion = property("deps.fabric_loader") as String
+        fabricLoaderVersion = property("deps.fabric_loader") as String?
 
         configureLoom {
             runs {
@@ -59,14 +49,9 @@ modstitch {
     }
 
     moddevgradle {
-        enable {
-            neoForgeVersion = findProperty("deps.neoforge") as String
-        }
+        neoForgeVersion = findProperty("deps.neoforge") as String?
 
         defaultRuns()
-        configureNeoforge {
-            // empty configuration
-        }
     }
 }
 
