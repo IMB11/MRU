@@ -44,16 +44,36 @@ jobs:
           path: |
             ./versions/**/build/libs/*.jar
 
+  set-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      game_versions: ${{ steps.set-matrix.outputs.game_versions }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - id: set-matrix
+        run: |
+          BRANCH="${{ github.ref_name }}"
+          if [ -f .github/targets.json ]; then
+            if jq -e --arg branch "$BRANCH" 'has($branch)' .github/targets.json > /dev/null; then
+              matrix=$(jq -c --arg branch "$BRANCH" '.[$branch]' .github/targets.json)
+              echo "game_versions=$matrix" >> $GITHUB_OUTPUT
+            else
+              echo "::error ::Branch '$BRANCH' is not supported for distribution!"
+              exit 1
+            fi
+          else
+            echo "::error ::.github/targets.json is missing!"
+            exit 1
+          fi
+
   distribute:
-    needs: build
-    runs-on: "ubuntu-latest"
+    needs: [ build, set-matrix ]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        # REMINDER: Update this array when adding new game versions.
-        game_version: [
-          "1.21.1-fabric",
-          "1.21.1-neoforge"
-        ]
+        game_version: ${{ fromJson(needs.set-matrix.outputs.game_versions) }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
