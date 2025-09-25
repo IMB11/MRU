@@ -3,26 +3,6 @@ plugins {
 }
 stonecutter active "1.21.6-fabric" /* [SC] DO NOT EDIT */
 
-stonecutter registerChiseled tasks.register("chiseledBuild", stonecutter.chiseled) {
-    group = "project"
-    ofTask("build")
-}
-
-stonecutter registerChiseled tasks.register("chiseledBuildAndCollect", stonecutter.chiseled) {
-    group = "project"
-    ofTask("buildAndCollect")
-}
-
-stonecutter registerChiseled tasks.register("chiseledReleaseMod", stonecutter.chiseled) {
-    group = "project"
-    ofTask("publish")
-}
-
-stonecutter registerChiseled tasks.register("chiseledReleaseModLocal", stonecutter.chiseled) {
-    group = "project"
-    ofTask("publishToMavenLocal")
-}
-
 allprojects {
     repositories {
         mavenCentral()
