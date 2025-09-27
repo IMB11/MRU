@@ -34,7 +34,7 @@ jobs:
       - name: Build JARs
         uses: Wandalen/wretry.action@master
         with:
-          command: "gradle build releaseMod -PmineblockMavenUsername=mineblock11 -PmineblockMavenPassword=${{ secrets.MAVEN_TOKEN }}"
+          command: "gradle build publish -PmineblockMavenUsername=mineblock11 -PmineblockMavenPassword=${{ secrets.MAVEN_TOKEN }}"
           attempt_limit: 3
 
       - name: Upload Built JARs
