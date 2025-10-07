@@ -9,13 +9,16 @@ plugins {
 tasks.named<ProcessResources>("processResources") {
     fun prop(name: String) = project.property(name) as String
 
+    dependsOn(":${stonecutter.current.project}:stonecutterGenerate")
+
     val props = HashMap<String, String>().apply {
         this["mod_version"] = prop("mod.version")
-        this["target_minecraft"] = prop("deps.minecraft")
+        this["target_minecraft"] = prop("mod.target")
         this["mod_id"] = "mru"
         this["mod_name"] = "M.R.U"
         this["mod_description"] = "A library mod which provides various utilities for IMB11's mods."
         this["mod_license"] = "ARR"
+        this["target_loader"] = prop("deps.fabric_loader")
     }
 
     filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
