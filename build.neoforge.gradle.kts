@@ -2,13 +2,14 @@ plugins {
     id("net.neoforged.moddev")
     id ("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
+    id("maven-publish")
 }
 
 tasks.named<ProcessResources>("processResources") {
     fun prop(name: String) = project.property(name) as String
 
     val props = HashMap<String, String>().apply {
-        this["mod_version"] = prop("mod.version")
+        this["mod_version"] = "${prop("mod.version")}+1.21.10"
         this["target_minecraft"] = prop("mod.target")
         this["mod_id"] = "mru"
         this["mod_name"] = "M.R.U"
@@ -113,3 +114,21 @@ val additionalVersions: List<String> = additionalVersionsStr
     ?.map { it.trim() }
     ?.filter { it.isNotEmpty() }
     ?: emptyList()
+
+publishing {
+    repositories {
+        maven {
+            name = "mineblockMaven"
+            url = uri("https://maven.imb11.dev/releases")
+            credentials(PasswordCredentials::class)
+        }
+    }
+
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            groupId = "dev.imb11"
+            artifactId = "mru"
+        }
+    }
+}
