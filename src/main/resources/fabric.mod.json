@@ -7,6 +7,9 @@
   "authors": [
     "IMB11 (mineblock11)"
   ],
+  "contributors": [
+    "cassiancc"
+  ],
   "contact": {
     "website": "https://imb11.dev/",
     "repo": "https://github.com/IMB11/MRU"
@@ -19,5 +22,13 @@
   "depends": {
     "fabricloader": ">=${target_loader}",
     "minecraft": "${target_minecraft}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.imb11.dev"
+      },
+      "badges": [ "library"]
+    }
   }
 }

@@ -63,7 +63,7 @@ dependencies {
 
 
     modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-fabric")
-    modCompileOnly("com.terraformersmc:modmenu:${property("deps.mod_menu")}")
+    modImplementation("com.terraformersmc:modmenu:${property("deps.mod_menu")}")
 
     val modules = listOf("transitive-access-wideners-v1", "registry-sync-v0", "resource-loader-v0")
     for (it in modules) modImplementation(fabricApi.module("fabric-$it", property("runtime.fabric_api") as String))
