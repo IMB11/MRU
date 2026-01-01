@@ -4,7 +4,7 @@ import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.controller.*;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -60,7 +60,7 @@ public class ConfigHelper {
                 .text(getText(EntryType.OPTION_DESCRIPTION, name));
 
         if (withImage) {
-            builder = builder.webpImage(ResourceLocation.tryBuild(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
+            builder = builder.webpImage(Identifier.tryBuild(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
         }
 
         return builder.build();

@@ -5,61 +5,61 @@ import java.nio.file.Path;
 public class LoaderUtils {
     public static Path getConfigPath(String modID, String configFileName, String configExtension) {
         /*? if fabric {*/
-        /*return net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir().resolve(modID).resolve(configFileName + "." + configExtension);
-        *//*?} else {*/
-        //? if >1.21.6 {
+        return net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir().resolve(modID).resolve(configFileName + "." + configExtension);
+        /*?} else {*/
+        /*//? if >1.21.6 {
         return net.neoforged.fml.loading.FMLLoader.getCurrent().getGameDir().resolve("config").resolve(modID).resolve(configFileName + "." + configExtension);
         //?} else {
-        /*return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID).resolve(configFileName + "." + configExtension);
-        *///?}
-         /*?}*/
+        /^return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID).resolve(configFileName + "." + configExtension);
+        ^///?}
+         *//*?}*/
     }
 
     public static boolean isModInstalled(String modid) {
         /*? if fabric {*/
-        /*return net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded(modid);
-        *//*?} else {*/
-        //? if >1.21.6 {
+        return net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded(modid);
+        /*?} else {*/
+        /*//? if >1.21.6 {
         return net.neoforged.fml.loading.FMLLoader.getCurrent().getLoadingModList().getModFileById(modid) != null;
         //?} else {
-        /*return net.neoforged.fml.loading.FMLLoader.getLoadingModList().getModFileById(modid) != null;
-        *///?}
-         /*?}*/
+        /^return net.neoforged.fml.loading.FMLLoader.getLoadingModList().getModFileById(modid) != null;
+        ^///?}
+         *//*?}*/
     }
 
     public static Path getGameDir() {
         /*? if fabric {*/
-        /*return net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir();
-        *//*?} else {*/
-        //? if >1.21.6 {
+        return net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir();
+        /*?} else {*/
+        /*//? if >1.21.6 {
         return net.neoforged.fml.loading.FMLLoader.getCurrent().getGameDir();
         //?} else {
-        /*return net.neoforged.fml.loading.FMLLoader.getGamePath();
-        *///?}
-         /*?}*/
+        /^return net.neoforged.fml.loading.FMLLoader.getGamePath();
+        ^///?}
+         *//*?}*/
     }
 
     public static Path getConfigFolder(String modID) {
         /*? if fabric {*/
-        /*return net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir().resolve("config").resolve(modID);
-        *//*?} else {*/
-        //? if >1.21.6 {
+        return net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir().resolve("config").resolve(modID);
+        /*?} else {*/
+        /*//? if >1.21.6 {
         return net.neoforged.fml.loading.FMLLoader.getCurrent().getGameDir().resolve("config").resolve(modID);
         //?} else {
-        /*return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID);
-        *///?}
-         /*?}*/
+        /^return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID);
+        ^///?}
+         *//*?}*/
     }
 
     public static boolean isDevelopmentEnvironment() {
         /*? if fabric {*/
-        /*return net.fabricmc.loader.api.FabricLoader.getInstance().isDevelopmentEnvironment();
-        *//*?} else {*/
-        //? if >1.21.6 {
+        return net.fabricmc.loader.api.FabricLoader.getInstance().isDevelopmentEnvironment();
+        /*?} else {*/
+        /*//? if >1.21.6 {
         return !net.neoforged.fml.loading.FMLLoader.getCurrent().isProduction();
         //?} else {
-        /*return !net.neoforged.fml.loading.FMLLoader.isProduction();
+        /^return !net.neoforged.fml.loading.FMLLoader.isProduction();
+        ^///?}
         *///?}
-        //?}
     }
 }

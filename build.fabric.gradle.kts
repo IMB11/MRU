@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom-remap")
     id("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
     id("maven-publish")
@@ -36,19 +36,22 @@ jsonlang {
 }
 
 repositories {
-    mavenLocal()
-    maven("https://mvn.devos.one/snapshots/")
-    maven("https://maven.wispforest.io")
-    maven("https://maven.imb11.dev/releases")
-    maven("https://maven.neoforged.net/releases/")
-    maven("https://maven.isxander.dev/releases")
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
-    maven("https://maven.quiltmc.org/repository/release")
-    maven("https://maven.shedaniel.me/")
-    maven("https://maven.terraformersmc.com/releases")
-    maven("https://maven.isxander.dev/releases")
-    maven("https://thedarkcolour.github.io/KotlinForForge/")
-    maven("https://api.modrinth.com/maven")
+    maven {
+        name = "Terraformers (Mod Menu)"
+        url = uri("https://maven.terraformersmc.com/releases/")
+        content {
+            includeGroupAndSubgroups("com.terraformersmc")
+            includeGroupAndSubgroups("dev.emi")
+        }
+    }
+    maven {
+        name = "Xander Maven"
+        url = uri("https://maven.isxander.dev/releases")
+        content {
+            includeGroupAndSubgroups("dev.isxander")
+            includeGroupAndSubgroups("org.quiltmc.parsers")
+        }
+    }
 }
 
 dependencies {
@@ -60,7 +63,6 @@ dependencies {
     })
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
-
 
     modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-fabric")
     modImplementation("com.terraformersmc:modmenu:${property("deps.mod_menu")}")
