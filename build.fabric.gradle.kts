@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("net.fabricmc.fabric-loom-remap")
+    id("net.fabricmc.fabric-loom")
     id("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
     id("maven-publish")
@@ -13,7 +13,7 @@ tasks.named<ProcessResources>("processResources") {
     dependsOn(":${stonecutter.current.project}:stonecutterGenerate")
 
     val props = HashMap<String, String>().apply {
-        this["mod_version"] = "${prop("mod.version")}+1.21.10"
+        this["mod_version"] = "${prop("mod.version")}+26.1"
         this["target_minecraft"] = prop("mod.target")
         this["mod_id"] = "mru"
         this["mod_name"] = "M.R.U"
@@ -56,19 +56,13 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("deps.minecraft")}")
-    mappings(loom.layered {
-        officialMojangMappings()
-        if (hasProperty("deps.parchment"))
-            parchment("org.parchmentmc.data:parchment-${property("deps.parchment")}@zip")
-    })
-    modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
 
-    modImplementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-fabric")
-    modImplementation("com.terraformersmc:modmenu:${property("deps.mod_menu")}")
+    implementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
+    implementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
 
-    val modules = listOf("transitive-access-wideners-v1", "registry-sync-v0", "resource-loader-v0")
-    for (it in modules) modImplementation(fabricApi.module("fabric-$it", property("runtime.fabric_api") as String))
+    compileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
+    compileOnly("com.terraformersmc:modmenu:${property("deps.mod_menu")}")
+
 }
 
 fabricApi {
@@ -85,7 +79,7 @@ tasks {
 
     register<Copy>("buildAndCollect") {
         group = "build"
-        from(remapJar.map { it.archiveFile })
+        from(jar.map { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
     }
@@ -93,11 +87,7 @@ tasks {
 
 java {
     withSourcesJar()
-    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
-        JavaVersion.VERSION_21
-    } else {
-        JavaVersion.VERSION_17
-    }
+    val javaCompat = JavaVersion.VERSION_25
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat
 }
