@@ -36,10 +36,10 @@ repositories {
         name = "Xander Maven"
         url = uri("https://maven.isxander.dev/releases")
         content {
-            includeGroupAndSubgroups("dev.isxander")
             includeGroupAndSubgroups("org.quiltmc.parsers")
         }
     }
+    mavenCentral()
 }
 
 dependencies {

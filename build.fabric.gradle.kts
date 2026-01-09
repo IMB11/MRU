@@ -48,10 +48,10 @@ repositories {
         name = "Xander Maven"
         url = uri("https://maven.isxander.dev/releases")
         content {
-            includeGroupAndSubgroups("dev.isxander")
             includeGroupAndSubgroups("org.quiltmc.parsers")
         }
     }
+    mavenCentral()
 }
 
 dependencies {
@@ -60,7 +60,7 @@ dependencies {
     implementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${property("runtime.fabric_api")}")
 
-    compileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
+    implementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-fabric")
     compileOnly("com.terraformersmc:modmenu:${property("deps.mod_menu")}")
 
 }
