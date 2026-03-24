@@ -1,7 +1,7 @@
 package dev.imb11.mru;
 
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.Identifier;
@@ -13,14 +13,14 @@ import java.util.function.Function;
 import static java.lang.Math.*;
 
 public class RenderUtils {
-    public static void renderTexture(GuiGraphics drawContext, Identifier texture, int x, int y, int textureWidth, int textureHeight) {
+    public static void extractTexture(GuiGraphicsExtractor drawContext, Identifier texture, int x, int y, int textureWidth, int textureHeight) {
         drawContext.blit(RenderPipelines.GUI_TEXTURED, texture, x, y, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
     }
 
-    public static void drawTextWrapped(GuiGraphics context, Font textRenderer, FormattedText text, int x, int y, int width, int color) {
+    public static void drawTextWrapped(GuiGraphicsExtractor context, Font textRenderer, FormattedText text, int x, int y, int width, int color) {
         for(Iterator<FormattedCharSequence> var7 = textRenderer.split(text, width).iterator(); var7.hasNext(); y += 9) {
             FormattedCharSequence orderedText = var7.next();
-            context.drawString(textRenderer, orderedText, x, y, color, false);
+            context.text(textRenderer, orderedText, x, y, color, false);
             Objects.requireNonNull(textRenderer);
         }
     }
