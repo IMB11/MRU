@@ -7,7 +7,11 @@ public class LoaderUtils {
         /*? if fabric {*/
         return net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir().resolve(modID).resolve(configFileName + "." + configExtension);
         /*?} else {*/
-        /*return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID).resolve(configFileName + "." + configExtension);
+        /*//? if >1.21.6 {
+        return net.neoforged.fml.loading.FMLLoader.getCurrent().getGameDir().resolve("config").resolve(modID).resolve(configFileName + "." + configExtension);
+        //?} else {
+        /^return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID).resolve(configFileName + "." + configExtension);
+        ^///?}
          *//*?}*/
     }
 
@@ -15,7 +19,11 @@ public class LoaderUtils {
         /*? if fabric {*/
         return net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded(modid);
         /*?} else {*/
-        /*return net.neoforged.fml.loading.FMLLoader.getLoadingModList().getModFileById(modid) != null;
+        /*//? if >1.21.6 {
+        return net.neoforged.fml.loading.FMLLoader.getCurrent().getLoadingModList().getModFileById(modid) != null;
+        //?} else {
+        /^return net.neoforged.fml.loading.FMLLoader.getLoadingModList().getModFileById(modid) != null;
+        ^///?}
          *//*?}*/
     }
 
@@ -23,7 +31,11 @@ public class LoaderUtils {
         /*? if fabric {*/
         return net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir();
         /*?} else {*/
-        /*return net.neoforged.fml.loading.FMLLoader.getGamePath();
+        /*//? if >1.21.6 {
+        return net.neoforged.fml.loading.FMLLoader.getCurrent().getGameDir();
+        //?} else {
+        /^return net.neoforged.fml.loading.FMLLoader.getGamePath();
+        ^///?}
          *//*?}*/
     }
 
@@ -31,7 +43,11 @@ public class LoaderUtils {
         /*? if fabric {*/
         return net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir().resolve("config").resolve(modID);
         /*?} else {*/
-        /*return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID);
+        /*//? if >1.21.6 {
+        return net.neoforged.fml.loading.FMLLoader.getCurrent().getGameDir().resolve("config").resolve(modID);
+        //?} else {
+        /^return net.neoforged.fml.loading.FMLLoader.getGamePath().resolve("config").resolve(modID);
+        ^///?}
          *//*?}*/
     }
 
@@ -39,7 +55,11 @@ public class LoaderUtils {
         /*? if fabric {*/
         return net.fabricmc.loader.api.FabricLoader.getInstance().isDevelopmentEnvironment();
         /*?} else {*/
-        /*return !net.neoforged.fml.loading.FMLLoader.isProduction();
+        /*//? if >1.21.6 {
+        return !net.neoforged.fml.loading.FMLLoader.getCurrent().isProduction();
+        //?} else {
+        /^return !net.neoforged.fml.loading.FMLLoader.isProduction();
+        ^///?}
         *///?}
     }
 }
