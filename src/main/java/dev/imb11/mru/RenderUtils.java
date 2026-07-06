@@ -2,7 +2,9 @@ package dev.imb11.mru;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+//? if >1.21.6 {
 import net.minecraft.client.renderer.RenderPipelines;
+//?}
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.FormattedCharSequence;
@@ -13,15 +15,20 @@ import java.util.function.Function;
 import static java.lang.Math.*;
 
 public class RenderUtils {
-    public static void extractTexture(GuiGraphicsExtractor drawContext, Identifier texture, int x, int y, int textureWidth, int textureHeight) {
-        drawContext.blit(RenderPipelines.GUI_TEXTURED, texture, x, y, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
+    public static void extractTexture(GuiGraphicsExtractor guiGraphics, Identifier texture, int x, int y, int textureWidth, int textureHeight) {
+        guiGraphics.blit(
+                //? if >1.21.6
+                RenderPipelines.GUI_TEXTURED,
+                texture, x, y, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
     }
 
-    public static void drawTextWrapped(GuiGraphicsExtractor context, Font textRenderer, FormattedText text, int x, int y, int width, int color) {
-        for(Iterator<FormattedCharSequence> var7 = textRenderer.split(text, width).iterator(); var7.hasNext(); y += 9) {
-            FormattedCharSequence orderedText = var7.next();
-            context.text(textRenderer, orderedText, x, y, color, false);
-            Objects.requireNonNull(textRenderer);
+    public static void drawTextWrapped(GuiGraphicsExtractor guiGraphics, Font font, FormattedText text, int x, int y, int width, int color) {
+        for(Iterator<FormattedCharSequence> line = font.split(text, width).iterator(); line.hasNext(); y += 9) {
+            FormattedCharSequence orderedText = line.next();
+            //~ if >=26.1 '.drawString' -> '.text' {
+            guiGraphics.text(font, orderedText, x, y, color, false);
+            //~}
+            Objects.requireNonNull(font);
         }
     }
 

@@ -1,5 +1,6 @@
 package dev.imb11.mru.yacl;
 
+import cc.cassian.mru.util.CommonUtils;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.controller.*;
@@ -60,7 +61,7 @@ public class ConfigHelper {
                 .text(getText(EntryType.OPTION_DESCRIPTION, name));
 
         if (withImage) {
-            builder = builder.webpImage(Identifier.tryBuild(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
+            builder = builder.webpImage(CommonUtils.id(modID, "textures/gui/options/" + name.toLowerCase() + ".webp"));
         }
 
         return builder.build();

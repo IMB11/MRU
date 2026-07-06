@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+license = "MIT"
+
+[[mods]]
+modId = "mru"
+version = "${version}"
+displayName = "${mod_name}"
+authors = "cassiancc, IMB11"
+description = "${mod_description}"
+logoFile = "icon.png"
+issueTrackerURL = "https://github.com/cassiancc/MRU/issues"
+displayURL="https://modrinth.com/mod/mru"
+modURL="https://modrinth.com/mod/mru"
+
+[[dependencies.mru]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,50)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.mru]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,1.20.2)"
+ordering = "NONE"
+side = "CLIENT"

@@ -8,21 +8,28 @@ pluginManagement {
         maven("https://maven.kikugie.dev/snapshots") { name = "KikuGie" }
         maven("https://maven.kikugie.dev/releases") { name = "KikuGie Releases" }
         maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
+        maven("https://maven.su5ed.dev/releases" ) {name = "Sinytra"}
     }
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
-    id("dev.kikugie.stonecutter") version "0.7.11"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("dev.kikugie.stonecutter") version "0.9.4"
+    id("dev.kikugie.loom-back-compat") version "0.3"
 }
 
 stonecutter {
     create(rootProject) {
         fun match(version: String, vararg loaders: String) = loaders
-            .forEach { version("$version-$it", version).buildscript = "build.$it.gradle.kts" }
+            .forEach {
+                version("$version-$it", version).buildscript = "build.$it.gradle.kts"
+            }
 
+        match("1.20.1", "fabric", "forge")
+        match("1.21.1", "fabric", "neoforge")
         match("26.1", "fabric", "neoforge")
+        match("26.2", "fabric", "neoforge")
 
-        vcsVersion = "26.1-fabric"
+        vcsVersion = "1.21.1-fabric"
     }
 }

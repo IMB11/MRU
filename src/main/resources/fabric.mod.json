@@ -1,27 +1,30 @@
 {
   "schemaVersion": 1,
   "id": "${mod_id}",
-  "version": "${mod_version}",
+  "version": "${version}",
   "name": "${mod_name}",
   "description": "${mod_description}",
   "authors": [
-    "IMB11 (mineblock11)"
-  ],
-  "contributors": [
-    "cassiancc"
+    "cassiancc",
+    "IMB11"
   ],
   "contact": {
-    "website": "https://imb11.dev/",
-    "repo": "https://github.com/IMB11/MRU"
+    "homepage": "https://modrinth.com/mod/mru",
+    "sources": "https://github.com/IMB11-Mods/MRU",
+    "issues": "https://github.com/IMB11-Mods/MRU/issues"
   },
   "license": "${mod_license}",
-  "icon": "assets/${mod_id}/icon.png",
+  "icon": "icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "cc.cassian.mru.fabric.FabricEvents"
+    ]
+  },
   "mixins": [],
   "depends": {
-    "fabricloader": ">=${target_loader}",
-    "minecraft": "${target_minecraft}"
+    "fabricloader": "*",
+    "minecraft": "${minecraft}"
   },
   "custom": {
     "modmenu": {

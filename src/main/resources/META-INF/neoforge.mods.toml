@@ -1,14 +1,14 @@
 modLoader="javafml"
 loaderVersion = "[1,)"
-issueTrackerURL="https://github.com/IMB11/IMB11/issues"
+issueTrackerURL="https://github.com/IMB11-Mods/IMB11/issues"
 displayURL="http://IMB11.dev/"
-logoFile="assets/mru/icon.png"
-authors="IMB11 (mineblock11)"
+logoFile="icon.png"
+authors="cassiancc, IMB11"
 license="${mod_license}"
 
 [[mods]]
 modId="mru"
-version="${mod_version}"
+version="${version}"
 displayName="${mod_name}"
 description="${mod_description}"
 
@@ -22,6 +22,6 @@ side="BOTH"
 [[dependencies.mru]]
 modId="minecraft"
 type="required"
-versionRange="${target_minecraft}"
+versionRange="${minecraft}"
 ordering="NONE"
 side="BOTH"
