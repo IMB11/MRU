@@ -214,6 +214,11 @@ dependencies {
     modCompileOnly("curse.maven:backpacked-352835:${mod.dep("backpacked")}")
     modImplementation("curse.maven:framework-549225:${mod.dep("framework")}")
 
+    modCompileOnly("dev.su5ed.sinytra.fabric-api:fabric-api-base:0.4.32+ef105b4977")
+    modCompileOnly("dev.su5ed.sinytra.fabric-api:fabric-rendering-v1:3.0.9+66e9a48f77")
+    modCompileOnly("dev.su5ed.sinytra.fabric-api:fabric-key-binding-api-v1:1.0.38+561530ec77")
+    modCompileOnly("dev.su5ed.sinytra.fabric-api:fabric-content-registries-v0:4.0.13+a670df1e77")
+
     modCompileOnly("io.github.llamalad7:mixinextras-common:0.5.0")
     implementation("io.github.llamalad7:mixinextras-forge:0.5.0")
     jarJar("io.github.llamalad7:mixinextras-forge:0.5.0")

@@ -1,6 +1,4 @@
-//? fabric {
 package cc.cassian.mru.client.util;
-
 
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
@@ -31,4 +29,3 @@ public class ClientVersionedUtil {
 		*///?}
 	}
 }
-//?}

@@ -55,14 +55,6 @@ repositories {
         }
     }
     maven {
-        name = "Terraformers (Mod Menu)"
-        url = uri("https://maven.terraformersmc.com/releases/")
-        content {
-            includeGroupAndSubgroups("com.terraformersmc")
-            includeGroup("dev.emi")
-        }
-    }
-    maven {
         name = "Wisp Forest Maven"
         url = uri("https://maven.wispforest.io/releases/")
         content {
@@ -208,8 +200,8 @@ dependencies {
     modCompileOnly("dev.isxander:yet-another-config-lib:${mod.dep("yacl")}")
     modLocalRuntime("dev.isxander:yet-another-config-lib:${mod.dep("yacl")}")
     // Mod Menu
-    modCompileOnly("com.terraformersmc:modmenu:${mod.dep("modmenu")}")
-    modLocalRuntime("com.terraformersmc:modmenu:${mod.dep("modmenu")}")
+    modCompileOnly("maven.modrinth:modmenu:${mod.dep("modmenu")}")
+    modLocalRuntime("maven.modrinth:modmenu:${mod.dep("modmenu")}")
     // Map Atlases
     if (stonecutter.eval(mcVersion, ">26")) {
         compileOnly("curse.maven:map-atlases-forge-519759:${mod.dep("map_atlases")}")
@@ -263,7 +255,7 @@ dependencies {
     if (stonecutter.eval(mcVersion, ">26")) {
         compileOnly("eu.pb4:trinkets:${mod.dep("trinkets")}")
     } else if (stonecutter.eval(mcVersion, "<1.21.4")) {
-        modCompileOnly("dev.emi:trinkets:${mod.dep("trinkets")}")
+        modCompileOnly("maven.modrinth:trinkets:${mod.dep("trinkets")}")
     }
 
     // Ohmega

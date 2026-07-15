@@ -1,4 +1,3 @@
-//? fabric {
 package cc.cassian.mru.fabric;
 
 import net.minecraft.world.level.ItemLike;
@@ -13,4 +12,3 @@ public class VersionedUtil {
 				.INSTANCE.add(itemLike, f);
 	}
 }
-//?}

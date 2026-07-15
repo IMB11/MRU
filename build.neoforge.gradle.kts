@@ -233,6 +233,7 @@ dependencies {
     compileOnly("maven.modrinth:travelersbackpack:${mod.dep("travelers_backpack")}-neoforge")
     compileOnly("maven.modrinth:sophisticated-core:${mod.dep("sophisticated_core")}")
     compileOnly("maven.modrinth:sophisticated-backpacks:${mod.dep("sophisticated_backpacks")}")
+    compileOnly("org.sinytra.forgified-fabric-api:forgified-fabric-api:${mod.dep("fabric_api")}")
 
     // Backpacked
     /*
