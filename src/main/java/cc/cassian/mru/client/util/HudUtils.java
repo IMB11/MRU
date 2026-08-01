@@ -1,6 +1,5 @@
 package cc.cassian.mru.client.util;
 
-import cc.cassian.mru.util.CommonUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -13,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.util.ARGB;
 //?}
+import cc.cassian.mru.util.CommonUtils;
 
 import java.util.function.Function;
 
@@ -165,6 +165,21 @@ public class HudUtils {
 		player.sendOverlayMessage(mutableComponent);
 		 //?} else {
 		/*player.displayClientMessage(mutableComponent, true);
+		*///?}
+	}
+
+	public static void blit(GuiGraphicsExtractor graphics, Identifier headerSeparator, int x, int y, float v, float v1, int width, int vHeight, int textureWidth, int textureHeight) {
+		//? if >1.21.2
+		graphics.blit(RenderPipelines.GUI_TEXTURED, headerSeparator, x, y, v, v1, width, vHeight, textureWidth, textureHeight);
+		//? if <1.21.2
+		//graphics.blit(headerSeparator, x, y, v, v1, width, vHeight, textureWidth, textureHeight);
+	}
+
+	public static void blitSprite(GuiGraphicsExtractor guiGraphics, Identifier craftingShapeless, int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight) {
+		//? if >1.21.2 {
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, craftingShapeless, x, y, u, v, width, height, textureWidth, textureHeight);
+		 //?} else {
+		/*guiGraphics.blit(craftingShapeless, x, y, u, v, width, height, textureWidth, textureHeight);
 		*///?}
 	}
 }

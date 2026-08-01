@@ -226,7 +226,7 @@ dependencies {
     compileOnly("top.theillusivec4.curios:curios-neoforge:${mod.dep("curios")}:api")
     compileOnly("io.github.swackyy:ohmega-neoforge:${property("deps.ohmega")}-mc${property("deps.minecraft")}")
     if (stonecutter.eval(mcVersion, ">26")) {
-        implementation("eu.pb4:trinkets:${mod.dep("trinkets")}")
+        compileOnly("eu.pb4:trinkets:${mod.dep("trinkets")}")
     }
 
     // Backpacks

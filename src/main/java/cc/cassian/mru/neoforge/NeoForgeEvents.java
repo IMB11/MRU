@@ -24,12 +24,12 @@ public class NeoForgeEvents {
 			LoadingModList.get().getMods().forEach(modInfo -> {
 				Optional<String> optional = modInfo.getConfig().getConfigElement("mru");
 				if (optional.isPresent()) {
-					LOGGER.info("MRU: Registering content for : {}", modInfo.getModId());
+					LOGGER.debug("MRU: Registering content for : {}", modInfo.getModId());
 					try {
 						Class<?> clazz = Class.forName(optional.get());
 						CommonRegisterEvent integration = ((CommonRegisterEvent) clazz.getConstructor().newInstance());
 						integration.onInitialize();
-						LOGGER.info("MRU: Registered content for mod: {}", modInfo.getModId());
+						LOGGER.debug("MRU: Registered content for mod: {}", modInfo.getModId());
 						return;
 					} catch (Exception ignored) {
 					}

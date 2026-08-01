@@ -19,6 +19,9 @@
   "entrypoints": {
     "main": [
       "cc.cassian.mru.fabric.FabricEvents"
+    ],
+    "client": [
+      "cc.cassian.mru.client.fabric.FabricClientEvents"
     ]
   },
   "mixins": [],
