@@ -1,2 +1,2 @@
-### Fixed
-- Crash when using the mod alongside Sinytra Connector/Launchpad.
+### Added
+- 26.3 support and versioned utilities.

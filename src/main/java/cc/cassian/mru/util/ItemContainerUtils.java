@@ -191,13 +191,17 @@ public class ItemContainerUtils {
 		var components = stack.getComponents();
 		if (components.has(DataComponents.BUNDLE_CONTENTS)) {
 			BundleContents bundleContents = components.get(DataComponents.BUNDLE_CONTENTS);
-			if (bundleContents != null)
+			if (bundleContents != null) {
+				//~ if >26.2 'itemCopyStream'->'itemCopies'
 				return bundleContents.itemCopyStream();
+			}
 		}
 		else if (components.has(DataComponents.CONTAINER)) {
 			ItemContainerContents containerContents = components.get(DataComponents.CONTAINER);
 			if (containerContents != null) {
-				//? >26 {
+				//? >26.2 {
+				/*return containerContents.itemCopies();
+				*///?} else if >26 {
 				return containerContents.allItemsCopyStream();
 				 //?} else {
 				/*return containerContents.stream();

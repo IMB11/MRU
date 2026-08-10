@@ -236,7 +236,7 @@ dependencies {
 
     // Jade
     modCompileOnly("maven.modrinth:jade:${mod.dep("jade")}")
-    modLocalRuntime("maven.modrinth:jade:${mod.dep("jade")}")
+//    modLocalRuntime("maven.modrinth:jade:${mod.dep("jade")}")
 
     // Cardinal Components
     if (hasProperty("deps.cca") && stonecutter.eval(mcVersion, ">1.21")) {
@@ -259,7 +259,11 @@ dependencies {
     }
 
     // Ohmega
-    modCompileOnly("io.github.swackyy:ohmega-fabric:${mod.dep("ohmega")}-mc${property("deps.minecraft")}")
+    if (stonecutter.eval(mcVersion, ">26.2")) {
+        modCompileOnly("io.github.swackyy:ohmega-fabric:${mod.dep("ohmega")}-mc26.2")
+    } else {
+        modCompileOnly("io.github.swackyy:ohmega-fabric:${mod.dep("ohmega")}-mc${property("deps.minecraft")}")
+    }
     modCompileOnly("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${mod.dep("forge_config_api_port")}")
 
     if (hasProperty("deps.surveyor")) {

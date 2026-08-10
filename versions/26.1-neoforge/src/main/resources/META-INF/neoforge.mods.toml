@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion = "[1,)"
+issueTrackerURL="https://github.com/IMB11-Mods/MRU/issues"
+displayURL="http://IMB11.dev/"
+logoFile="icon.png"
+authors="cassiancc, IMB11"
+license="${mod_license}"
+
+[[mods]]
+modId="mru"
+version="${version}"
+displayName="${mod_name}"
+description="${mod_description}"
+
+[[dependencies.mru]]
+modId="neoforge"
+versionRange="[2,)"
+type="required"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.mru]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft}"
+ordering="NONE"
+side="BOTH"

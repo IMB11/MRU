@@ -9,7 +9,7 @@ displayName = "${mod_name}"
 authors = "cassiancc, IMB11"
 description = "${mod_description}"
 logoFile = "icon.png"
-issueTrackerURL = "https://github.com/cassiancc/MRU/issues"
+issueTrackerURL = "https://github.com/IMB11-Mods/MRU/issues"
 displayURL="https://modrinth.com/mod/mru"
 modURL="https://modrinth.com/mod/mru"
 

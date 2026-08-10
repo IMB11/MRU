@@ -1,19 +1,16 @@
 package cc.cassian.mru.util;
 
 //? fabric
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.tags.TagKey;
 import org.jspecify.annotations.Nullable;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 
 import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Stream;
 
 public class RegistryUtils {
 
@@ -31,12 +28,27 @@ public class RegistryUtils {
 	public static <T> @Nullable T getValue(Registry<T> registry, Identifier name) {
 		return registry.getValue(name);
 	}
+
+	public static <T> Iterable<Holder<T>> getTagOrEmpty(Registry<T> registry, TagKey<T> tagKey) {
+		return registry.getTagOrEmpty(tagKey);
+	}
+
+	public static <T> Stream<Holder.Reference<T>> listElements(Registry<T> registry) {
+		return registry.listElements();
+	}
 	//?} else if >1.20.4 {
 	/*public static <T> Optional<Holder.Reference<T>> getHolder(Registry<T> registry, Identifier name) {
 		return registry.getHolder(name);
 	}
 	public static <T> @Nullable T getValue(Registry<T> registry, Identifier name) {
 		return registry.get(name);
+	}
+	public static <T> Iterable<Holder<T>> getTagOrEmpty(Registry<T> registry, TagKey<T> tagKey) {
+		return registry.getTagOrEmpty(tagKey);
+	}
+
+	public static <T> Stream<Holder.Reference<T>> listElements(Registry<T> registry) {
+		return registry.holders();
 	}
 	*///?} else {
 	/*public static <T> Optional<Holder.Reference<T>> getHolder(Registry<T> registry, Identifier name) {
