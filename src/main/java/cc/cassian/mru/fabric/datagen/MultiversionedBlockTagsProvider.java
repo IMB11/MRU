@@ -108,7 +108,7 @@ public abstract class MultiversionedBlockTagsProvider extends FabricTagsProvider
 		}
 	}
 
-	private MultiversionedBlockTagBuilder tagBuilder(TagKey<Block> tag) {
+	protected MultiversionedBlockTagBuilder tagBuilder(TagKey<Block> tag) {
 		return new MultiversionedBlockTagBuilder(tag);
 	}
 

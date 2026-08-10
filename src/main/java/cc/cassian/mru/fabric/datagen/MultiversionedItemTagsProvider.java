@@ -110,7 +110,7 @@ public abstract class MultiversionedItemTagsProvider extends FabricTagsProvider.
 		}
 	}
 
-	private MultiversionedItemTagBuilder tagBuilder(TagKey<Item> tag) {
+	protected MultiversionedItemTagBuilder tagBuilder(TagKey<Item> tag) {
 		return new MultiversionedItemTagBuilder(tag);
 	}
 
