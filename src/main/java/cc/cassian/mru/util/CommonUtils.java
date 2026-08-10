@@ -1,7 +1,11 @@
 package cc.cassian.mru.util;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.locale.Language;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 @SuppressWarnings("unused")
 public class CommonUtils {
@@ -14,6 +18,14 @@ public class CommonUtils {
 		//?} else {
 		/*return new Identifier(namespace, path);
 		 *///?}
+	}
+
+	public static TagKey<Block> blockTag(String namespace, String path) {
+		return TagKey.create(Registries.BLOCK, CommonUtils.id(namespace, path));
+	}
+
+	public static TagKey<Item> itemTag(String namespace, String path) {
+		return TagKey.create(Registries.ITEM, CommonUtils.id(namespace, path));
 	}
 
 	/**

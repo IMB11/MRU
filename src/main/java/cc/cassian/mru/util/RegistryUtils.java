@@ -1,12 +1,10 @@
 package cc.cassian.mru.util;
 
-//? fabric
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import org.jspecify.annotations.Nullable;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 
 import java.util.Optional;

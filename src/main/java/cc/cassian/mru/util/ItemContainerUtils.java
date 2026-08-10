@@ -64,11 +64,9 @@ public class ItemContainerUtils {
 			TrinketsCompat.checkForImportantAccessories(player, isImportantItemOrContainer);
 		}
 		//?}
-		//? if >26 {
 		if (ModCompat.OHMEGA) {
 			OhmegaCompat.checkForImportantAccessories(player, isImportantItemOrContainer);
 		}
-		//?}
 		if (ModCompat.TRAVELERS_BACKPACK)
 			TravelersBackpackCompat.checkForImportantAccessories(player, isImportantItemOrContainer);
 		checkInventoryForStack(player.getInventory(), isImportantItemOrContainer, checkContainersForContainers);
