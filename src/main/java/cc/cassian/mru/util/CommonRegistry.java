@@ -10,6 +10,8 @@ import net.minecraft.core.component.DataComponentType;
 //?}
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+//~ if >=26.2 'cc.cassian.mru.util'->'net.minecraft.references'
+import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
@@ -17,6 +19,9 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -29,13 +34,17 @@ public interface CommonRegistry {
 
 	String namespace();
 
-	private Identifier id(String name) {
+	default Identifier id(String name) {
 		return CommonUtils.id(namespace(), name);
+	}
+
+	default BlockItemId blockItemId(String name) {
+		return new BlockItemId(CommonUtils.blockKey(namespace(), name), CommonUtils.itemKey(namespace(), name));
 	}
 
 	//? fabric && >1.21.2 {
 	default <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, FabricBlockEntityTypeBuilder.Factory<T> value, Block... block) {
-		return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, CommonUtils.id(namespace(), name), FabricBlockEntityTypeBuilder.create(value, block).build());
+		return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, id(name), FabricBlockEntityTypeBuilder.create(value, block).build());
 	}
 	//?} else if neoforge && >1.21.2 {
 	/*default <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, BlockEntityType.BlockEntitySupplier<T> value, Block... block) {
@@ -129,5 +138,17 @@ public interface CommonRegistry {
 
 	default Holder<MobEffect> registerMobEffect(String name, MobEffect effect) {
 		return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, id(name), effect);
+	}
+
+	default <B extends RecipeSerializer<?>> B registerRecipeSerializer(String name, B supplier) {
+		return register(name, supplier, BuiltInRegistries.RECIPE_SERIALIZER);
+	}
+
+	default <T extends Recipe<?>> RecipeType<T> registerRecipeType(final String name) {
+		return Registry.register(BuiltInRegistries.RECIPE_TYPE, id(name), new RecipeType<T>() {
+			public String toString() {
+				return namespace() + ":" + name;
+			}
+		});
 	}
 }

@@ -1,3 +1,4 @@
+//noinspection
 @file:Suppress("UnstableApiUsage")
 
 plugins {
@@ -36,9 +37,13 @@ tasks.named("processResources") {
 version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
 base.archivesName = property("mod.id") as String
 
-//loom {
-//    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}.accesswidener")
-//}
+loom {
+    if (stonecutter.eval(mcVersion, ">26")) {
+        accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}.classtweaker")
+    } else {
+        accessWidenerPath = file("src/main/resources/${property("mod.id")}.classtweaker")
+    }
+}
 
 jsonlang {
     languageDirectories = listOf("assets/${property("mod.id")}/lang")

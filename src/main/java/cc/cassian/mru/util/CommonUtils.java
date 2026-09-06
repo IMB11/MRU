@@ -3,6 +3,7 @@ package cc.cassian.mru.util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.locale.Language;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -28,10 +29,19 @@ public class CommonUtils {
 		return TagKey.create(Registries.ITEM, CommonUtils.id(namespace, path));
 	}
 
+	public static ResourceKey<Block> blockKey(String namespace, String path) {
+		return ResourceKey.create(Registries.BLOCK, CommonUtils.id(namespace, path));
+	}
+
+	public static ResourceKey<Item> itemKey(String namespace, String path) {
+		return ResourceKey.create(Registries.ITEM, CommonUtils.id(namespace, path));
+	}
+
+
 	/**
 	 * Creates an ID from a string, defaulting to the Minecraft namespace if no namespace is included.
 	 */
-	private static Identifier parseId(String string) {
+	public static Identifier parseId(String string) {
 		//? if >1.21 {
 		return Identifier.parse(string);
 		//?} else {

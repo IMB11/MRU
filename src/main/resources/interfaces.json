@@ -1,0 +1,20 @@
+{
+  "net/minecraft/world/item/Item": [
+    "cc/cassian/mru/util/Identifiable"
+  ],
+  "net/minecraft/world/level/block/Block": [
+    "cc/cassian/mru/util/Identifiable"
+  ],
+  "net/minecraft/tags/TagKey": [
+    "cc/cassian/mru/util/Identifiable"
+  ],
+  "net/minecraft/core/Holder$Reference": [
+    "cc/cassian/mru/util/Identifiable"
+  ],
+  "net/minecraft/core/Holder$Direct": [
+    "cc/cassian/mru/util/Identifiable"
+  ],
+  "net/minecraft/resources/ResourceKey":[
+    "cc/cassian/mru/util/Identifiable"
+  ]
+}

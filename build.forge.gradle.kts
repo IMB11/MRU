@@ -231,7 +231,6 @@ dependencies {
 }
 
 
-/*
 mixin {
     add(sourceSets["main"], "mru.refmap.json")
     config("mru.mixins.json")
@@ -245,7 +244,6 @@ tasks.named<Jar>("jar") {
     }
 }
 
- */
 
 stonecutter {
     replacements.string {

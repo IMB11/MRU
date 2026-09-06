@@ -5,21 +5,23 @@
 //~ if <26 'FabricPackOutput'->'FabricDataOutput' {
 package cc.cassian.mru.fabric.datagen;
 
+//~ if >=26.2 'cc.cassian.mru.util'->'net.minecraft.references'
+import net.minecraft.references.BlockItemId;
+import cc.cassian.mru.util.Identifiable;
 //~ if >=26.2 'cc.cassian.mru.util'->'net.minecraft.tags'
 import net.minecraft.tags.BlockItemTagId;
 import cc.cassian.mru.util.CommonUtils;
-import cc.cassian.mru.util.ItemLikeEntry;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 //? if >=26.2 {
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 //?} else if >26 {
 /*import net.minecraft.data.tags.TagAppender;
 *///?}
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -74,13 +76,30 @@ public abstract class MultiversionedItemTagsProvider extends FabricTagsProvider.
 			return add(item.value());
 		}
 
-		public MultiversionedItemTagBuilder add(ItemLikeEntry<?> item) {
-			rawBuilder = rawBuilder.addElement(item.id());
+		public MultiversionedItemTagBuilder add(Identifiable item) {
+			if (item instanceof TagKey<?>)
+				rawBuilder = rawBuilder.addOptionalTag(item.mru$identifier());
+			else rawBuilder = rawBuilder.addElement(item.mru$identifier());
 			return this;
+		}
+
+		public MultiversionedItemTagBuilder add(Identifiable... item) {
+			for (Identifiable identifiable : item) {
+				rawBuilder = rawBuilder.addElement(identifiable.mru$identifier());
+			}
+			return this;
+		}
+
+		public MultiversionedItemTagBuilder add(BlockItemId item) {
+			return add(item.item().mru$identifier());
 		}
 
 		public MultiversionedItemTagBuilder addOptionalTag(BlockItemTagId itemTagKey) {
 			return addOptionalTag(itemTagKey.item());
+		}
+
+		public MultiversionedItemTagBuilder add(ResourceKey<Item> itemTagKey) {
+			return add(itemTagKey.mru$identifier());
 		}
 
 		public MultiversionedItemTagBuilder addOptionalTag(TagKey<Item> itemTagKey) {

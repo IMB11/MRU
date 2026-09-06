@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "cc.cassian.mru.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "BlockMixin",
+    "HolderMixin",
+    "ItemMixin",
+    "ResourceKeyMixin",
+    "TagKeyMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+  ]
+}

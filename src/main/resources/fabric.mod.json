@@ -24,9 +24,12 @@
       "cc.cassian.mru.client.fabric.FabricClientEvents"
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "mru.mixins.json"
+  ],
+  "accessWidener": "mru.classtweaker",
   "depends": {
-    "fabricloader": "*",
+    "fabricloader": ">=0.18.0",
     "minecraft": "${minecraft}"
   },
   "custom": {

@@ -25,3 +25,6 @@ type="required"
 versionRange="${minecraft}"
 ordering="NONE"
 side="BOTH"
+
+[[mixins]]
+config = "mru.mixins.json"

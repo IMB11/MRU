@@ -4,21 +4,23 @@
 //~ if <26 'FabricPackOutput'->'FabricDataOutput' {
 package cc.cassian.mru.fabric.datagen;
 
+//~ if >=26.2 'cc.cassian.mru.util'->'net.minecraft.references'
+import net.minecraft.references.BlockItemId;
+import cc.cassian.mru.util.Identifiable;
 //~ if >=26.2 'cc.cassian.mru.util'->'net.minecraft.tags'
 import net.minecraft.tags.BlockItemTagId;
 import cc.cassian.mru.util.CommonUtils;
-import cc.cassian.mru.util.ItemLikeEntry;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 //? if >=26.2 {
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 //?} else if >26 {
 /*import net.minecraft.data.tags.TagAppender;
  *///?}
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -67,13 +69,25 @@ public abstract class MultiversionedBlockTagsProvider extends FabricTagsProvider
 			return this;
 		}
 
+		public MultiversionedBlockTagBuilder add(ResourceKey<Block> block) {
+			add(block.mru$identifier());
+			return this;
+		}
+
 		public MultiversionedBlockTagBuilder add(Holder<Block> block) {
 			add(block.value());
 			return this;
 		}
 
-		public MultiversionedBlockTagBuilder add(ItemLikeEntry<?> block) {
-			rawBuilder = rawBuilder.addElement(block.id());
+		public MultiversionedBlockTagBuilder add(Identifiable block) {
+			if (block instanceof TagKey<?>)
+				rawBuilder = rawBuilder.addOptionalTag(block.mru$identifier());
+			else rawBuilder = rawBuilder.addElement(block.mru$identifier());
+			return this;
+		}
+
+		public MultiversionedBlockTagBuilder add(BlockItemId item) {
+			rawBuilder = rawBuilder.addElement(item.block().mru$identifier());
 			return this;
 		}
 
