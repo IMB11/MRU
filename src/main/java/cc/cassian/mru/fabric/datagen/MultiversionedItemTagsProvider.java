@@ -5,6 +5,7 @@
 //~ if <26 'FabricPackOutput'->'FabricDataOutput' {
 package cc.cassian.mru.fabric.datagen;
 
+import cc.cassian.mru.util.ItemLikeEntry;
 //~ if >=26.2 'cc.cassian.mru.util'->'net.minecraft.references'
 import net.minecraft.references.BlockItemId;
 import cc.cassian.mru.util.Identifiable;
@@ -73,6 +74,10 @@ public abstract class MultiversionedItemTagsProvider extends FabricTagsProvider.
 		}
 
 		public MultiversionedItemTagBuilder add(Holder<Item> item) {
+			return add(item.value());
+		}
+
+		public MultiversionedItemTagBuilder add(ItemLikeEntry<Item> item) {
 			return add(item.value());
 		}
 
